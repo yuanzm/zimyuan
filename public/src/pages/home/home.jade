@@ -1,0 +1,83 @@
+extends ../layout.jade
+
+block css
+	link(rel="stylesheet", href="../dist/css/home.css")
+
+block pagemain
+	div(class="front-cover")
+		div(class="front-cover__silhouettes")
+			span(class="front-cover__silhouettes-1")
+			span(class="front-cover__silhouettes-2")
+			img(class="front-cover__zim" src="../assets/images/zim.gif")
+		div(class="front-cover__motto") 他们都说我是三胖
+
+	div(class="brief-info")
+		h1(class="brief-info__name") 袁梓民 zimyuan
+		p(class="brief-info__content") Web engineer from the Tencent, focusing all his efforts on web development for this thing called 'Front End'. One day he hopes to make something that can record his life.
+
+	div(class="zimyuan__hr")
+
+	section(class="recommend")
+		h2(class="recommend__title")
+			span(class="icon icons8-Document") 
+			&nbsp热门文章
+		ul(class="recommend__list")
+			li(class="recommend__list-item")
+				h3(class="recommend__list-item-title") Node入门
+				p(class="recommend__list-item-mata") 2016年4月29日
+			li(class="recommend__list-item")
+				h3(class="recommend__list-item-title") JavaScript中的this详解
+				p(class="recommend__list-item-mata") 2016年4月29日
+
+	section(class="recommend")
+		h2(class="recommend__title")
+			span(class="icon icons8-Photo")
+			&nbsp精选照片
+		ul(class="recommend__list")
+			li(class="recommend__list-item")
+				div(class="recommend__list-item-photo")
+					img(src="http://jimramsden.com/content/02-photos/11-coast/thumb.jpg")
+				h3(class="recommend__list-item-title") 丽江七日游
+				p(class="recommend__list-item-mata") 2016年5月2日
+			li(class="recommend__list-item")
+				div(class="recommend__list-item-photo")
+					img(src="http://jimramsden.com/content/02-photos/10-hometown/thumb.jpg")
+				h3(class="recommend__list-item-title") 我的母校
+				p(class="recommend__list-item-mata") 2015年3月9日
+
+	section(class="recommend")
+		h2(class="recommend__title")
+			span(class="icon icons8-Note")
+			&nbsp最新笔记
+		ul(class="recommend__list")
+			li(class="recommend__list-item")
+				h3(class="recommend__list-item-title") nginx下载安装
+				p(class="recommend__list-item-mata") 2016年5月2日
+			li(class="recommend__list-item")
+				h3(class="recommend__list-item-title") Express安全指南
+				p(class="recommend__list-item-mata") 2015年3月9日
+
+	div(class="zimyuan__hr")
+
+	aside(class="sitemeta")
+		nav(id="nav", class="sitemeta__nav")
+			a(class="sitemeta__nav-home-link", href="http://www.zimyuan.com") zimyuan.com
+			ul(class="sitemeta__nav-menu")
+				li(class="sitemeta__nav-menu-item")
+					a(class="", href="/atricles")
+						span(class="icon icons8-Document_big")
+						&nbspBlogs
+				li(class="sitemeta__nav-menu-item")
+					a(class="", href="/atricles")
+						span(class="icon icons8-Photo_big") 
+						&nbspPhotos
+				li(class="sitemeta__nav-menu-item")
+					a(class="", href="/atricles")
+						span(class="icon icons8-Note_big") 
+						&nbspNotes
+				li(class="sitemeta__nav-menu-item")
+					a(class="", href="/atricles")
+						span(class="icon icons8-Profile_big")
+						&nbspProfile
+			a(class="sitemeta__nav-close", href="#")
+				i(class="icon icons8-Close")

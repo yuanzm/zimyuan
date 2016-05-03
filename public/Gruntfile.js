@@ -58,36 +58,20 @@
 			//监听文件变化，如果src文件夹中的js或css文件变化了，执行任务`browserify`和`sass`
 			watch: {
 				weixin: {
-				  files: ["src/**/*.js", "src/**/*.less", "src/**/*.html"],
-				  tasks: ["browserify", "concat", "less", "copy"]
+				  files: ["src/**/*.js", "src/**/*.less", "src/**/*.jade"],
+				  tasks: ["browserify", "less", "copy", "jade"]
 				}
 			},
 			//less文件编译成css
 			less: {
 				weixinComponents: {
 				  	files: {
-						'dist/css/qing-song.css': ['dist/css/qing-song.less']
+						'dist/css/icon.css': 'src/common/lib-icons.less',
+						'dist/css/home.css': 'src/pages/home/home.less',
+						'dist/css/notes.css': 'src/pages/notes/notes.less',
 				  	}
 				}
 		  	},
-		  	concat: {
-			    options: {
-			      	separator: '\n',
-			    },
-			    dist: {
-			      	src  : [
-			      		'src/common/lib-var.less', 
-			      		'src/common/lib-mixins.less', 
-			      		"src/common/lib-reset.less",
-						"src/common/lib-lay.less",
-						"src/common/icon.less",
-						"src/common/base.less",
-						"src/components/**/*.less",
-						"src/pages/**/*.less"
-			      	],
-			      	dest : './dist/css/qing-song.less',
-			    },
-			},
 
 			connect: {
 			    server: {
@@ -108,7 +92,20 @@
       					}
     				}
 	            }
-	        }
+	        },
+	        jade: {
+				compile: {
+				    options: {
+				     	data: {
+				        	debug: false
+				      	}
+				    },
+			    	files: {
+			    		"views/home.html": "src/pages/home/home.jade",
+			    		"views/notes.html": "src/pages/notes/notes.jade",
+			    	}
+				}
+			}
 		});
 
 		//加载上述任务所需要的插件
@@ -123,17 +120,20 @@
 		grunt.loadNpmTasks('grunt-contrib-concat');
 		grunt.loadNpmTasks('grunt-contrib-connect');
 		grunt.loadNpmTasks('grunt-contrib-copy');
-		// grunt.loadNpmTasks('grunt-shell');
-		//定义被执行的任务列表
+		grunt.loadNpmTasks('grunt-contrib-jade');
 
-		grunt.registerTask("default", function() {
-		  return grunt.task.run(["clean","browserify", "less", "watch"]);
+		grunt.registerTask("test", function() {
+		  return grunt.task.run([
+		  	"less",
+			"jade",
+			"connect",
+			"watch" 
+		  ]);
 		});
 
-		//定义微信端的开发任务
-		grunt.registerTask("weixin", function() {
+
+		grunt.registerTask("default", function() {
 		  return grunt.task.run([
-			// "clean", 
 			"browserify", 
 			"concat",
 			"less", 

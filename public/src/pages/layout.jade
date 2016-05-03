@@ -1,0 +1,16 @@
+doctype html
+html
+	head
+		//- 公共的head内部标签
+		include head
+		//- 公共引用的类库
+		include lib
+		//- 各个页面按需引用的head标签
+		block css
+
+	body
+		include header
+		
+		block pagemain
+
+		include footer
