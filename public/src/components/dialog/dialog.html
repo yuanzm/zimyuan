@@ -1,0 +1,26 @@
+<style>{{css}}</style>
+<div class="qingsong-dialog {{need_parse}}" id="{{ id }}">    
+    <div class="qingsong-dialog__mask"></div>    
+    <div class="qingsong-dialog__main">        
+        {{ if hasTitle }}
+            <div class="qingsong-dialog__header">            
+                <div class="qingsong-dialog__title">
+                    {{ title }}
+                </div>        
+            </div>      
+        {{ /if }}
+        <div class="qingsong-dialog__body">
+            <div class="qingsong-dialog__content ">
+                {{ text }}
+            </div>
+        </div>
+        <div class="qingsong-dialog__footer {{ btns }}">
+            <a href="javascript:;" class="qingsong-dialog__btn qingsong-dialog__btn-1" data-op="{{ cancelOp }}">
+                {{ cancelText }}
+            </a>            
+            <a href="javascript:;" class="qingsong-dialog__btn qingsong-dialog__btn-2 qingsong-dialog__btn_current" data-op="{{ confirmOp }}">
+                {{ confirmText }}
+            </a>
+        </div>    
+    </div>
+</div>

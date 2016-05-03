@@ -1,0 +1,34 @@
+{
+  "name": "jianda",
+  "version": "0.0.1",
+  "author": "zimyuan",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-browserify": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-cssmin": "^0.14.0",
+    "grunt-contrib-sass": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*"
+  },
+  "dependencies": {
+    "art-template": "^3.0.3",
+    "big.js": "^3.1.3",
+    "browserify": "*",
+    "coffeeify": "*",
+    "date_picker": "^1.0.6",
+    "express": "^4.13.4",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-connect": "^0.11.2",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-less": "*",
+    "grunt-shell": "*",
+    "handlebars": "*",
+    "md5-file": "^2.0.4",
+    "remapify": "*",
+    "stringify": "*",
+    "through": "*",
+    "validator": "^4.9.0"
+  }
+}

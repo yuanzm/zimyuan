@@ -1,0 +1,59 @@
+/*
+ * 充分利用Less的语法特性
+ */
+
+/* 常见CSS3属性混合*/
+.transition(@type: all; @time: .3s; @ease-type: ease;) {
+-webkit-transition: @type @time @ease-type;
+   -moz-transition: @type @time @ease-type;
+    -ms-transition: @type @time @ease-type;
+     -o-transition: @type @time @ease-type;
+        transition: @type @time @ease-type;
+}
+
+.border-radius (@radius: 5px) {
+  border-radius: @radius;
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+}
+
+.transform (@x:-50%, @y:-50%) {
+  -webkit-transform: translate(@x,@y);
+    -ms-transform  : translate(@x,@y);
+    transform      : translate(@x,@y);  
+}
+
+
+.box-shadow (@x: 0, @y: 0, @blur: 1px, @color: #000) {
+  box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  -webkit-box-shadow: @arguments;
+}
+
+.opacity (@opa: 0.5){
+  -moz-opacity:@opa;             
+  -khtml-opacity:@opa;              
+  opacity: @opa;          
+}
+
+.border() {
+  border: solid 1px #d8d8d8;
+  .border-radius(10px);
+}
+
+.input (@width: 31px, @height: 31px, @margin-left: 0px) {
+  .border();
+  width: @width;
+  height: @height;
+  margin-left: @margin-left;
+  outline: none;
+  padding: 0px 10px 0px 10px;
+}
+
+.drop-shadow() {
+    -webkit-filter : drop-shadow(0 1px 2px rgba(0,0,0,.3));
+    -moz-filter    : drop-shadow(0 1px 2px rgba(0,0,0,.3));
+    -ms-filter     : drop-shadow(0 1px 2px rgba(0,0,0,.3));
+    -o-filter      : drop-shadow(0 1px 2px rgba(0,0,0,.3));
+    filter         : drop-shadow(0 1px 2px rgba(0,0,0,.3));
+}

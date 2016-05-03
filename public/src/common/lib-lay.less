@@ -1,0 +1,95 @@
+/*
+ * 定义全局Less样式
+ * 定义常见class样式
+ */
+html {
+    height: 100%;
+    margin-top: 0;
+    font-family:sans-serif;
+    -ms-text-size-adjust:100%;
+    -webkit-text-size-adjust:100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-color: #fff;
+    color: #000;
+    font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei",sans-serif;
+    font-size: 14px;
+    line-height: 19.6px;
+    height: 100%;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.jianda {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%; /*IE6不识别min-height*/
+    position: relative;
+    background-color: #fff;
+}
+
+.jianda__header {
+    width: 100%;
+    // height: @header-height;
+    margin: 0 auto;
+    // background: url(../../assert/images/header.gif) no-repeat;
+    // background-size: 100%;
+}
+
+.jianda__header-img {
+    width: 100%;
+    height: auto;
+}
+
+.jianda__content {
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: @footer-height + 30px;
+
+    background: url(../../assert/images/bg.gif) no-repeat;
+    background-size: 100%;
+}
+
+.jianda__footer {
+    width: 100%;
+    text-align: center;
+    height: @footer-height;
+    font-size: 12px;
+    // background-color: #00a0e9;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+
+    background: url(../../assert/images/footer_bg.gif) no-repeat;
+    background-size: 100%;
+}
+
+.jianda__footer-title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.hidden {
+  display: none;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+
+input {
+    outline: none;
+}
+
+input[type="button"] {
+    cursor: pointer;
+}

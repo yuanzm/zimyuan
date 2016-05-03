@@ -1,0 +1,22 @@
+{
+  "name": "qingsongbaoxiao",
+  "version": "0.0.1",
+  "authors": [
+    "yuanzm <1229084233@qq.com>"
+  ],
+  "description": "qingsongbaoxiao",
+  "keywords": [],
+  "dependencies": {
+    "jquery": "*",
+    "zepto": "*"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib/",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,110 @@
+.qingsong-dialog {
+
+}
+
+.qingsong-dialog__mask {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 11001;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.6)!important;
+}
+
+.qingsong-dialog__main {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 11003;
+	min-width: 300px;
+	max-width: 350px;
+	background-color: #fff;
+	color: #000;
+	text-align: center;
+	font-size: 16px;
+	.border-radius(5px);
+	background-clip: padding-box;
+	.transform();
+	overflow: hidden;
+}
+
+.qingsong-dialog__header {
+	background-color: #009cdc;
+	color: #fff;
+	padding: 5px;
+}
+
+.qingsong-dialog__title {
+	
+}
+
+.qingsong-dialog__body {
+	overflow: hidden;
+}
+
+.qingsong-dialog__content {
+	box-sizing: border-box;
+	width: 100%;
+	color: #4d4d4d;
+	// line-height: 20px;
+	font-size: 16px;
+	padding: 30px 20px;
+}
+
+.qingsong-dialog__footer {
+	position: relative;
+	display: -webkit-box;
+	border-top: 1px solid #d5d5d6;
+}
+
+.qingsong-dialog__footer_one-btn .qingsong-dialog__btn-1 {
+	display: none;
+}
+	
+.qingsong-dialog__footer:after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	border-top: 1px solid #d5d5d6;
+	// content: "";
+	-webkit-transform: scaleY(.5);
+	-ms-transform: scaleY(.5);
+	transform: scaleY(.5);
+	-webkit-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	transform-origin: 0 0;
+}
+
+.qingsong-dialog__btn {
+	position: relative;
+	display: block;
+	width: 0;
+	height: 35px;
+	color: #444;
+	text-decoration: none;
+	line-height: 35px;
+	-webkit-box-flex: 1;
+}
+
+.qingsong-dialog__btn:after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1px;
+	height: 100%;
+	border-left: 1px solid #d5d5d6;
+	content: " ";
+	-webkit-transform: scaleX(.5);
+	-ms-transform: scaleX(.5);
+	transform: scaleX(.5);
+	-webkit-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	transform-origin: 0 0;
+}
+
+.qingsong-dialog__btn_current {
+	color: #009cdc;
+}
