@@ -7,8 +7,10 @@ var express      = require('express'),
 
     routes       = require('./routes/index'),
     users        = require('./routes/users'),
-
     app          = express();
+
+// 数据库连接
+require('./models');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
