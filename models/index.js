@@ -15,12 +15,14 @@ mongoose.connect(config.db, function(err) {
 });
 
 // models
+require('./user.js');
 require('./article.js');
 require('./reply.js');
 require('./note.js');
 require('./notebook.js');
 
-exports.Article = mongoose.model('Article');
-exports.Reply = mongoose.model('Reply');
-exports.Note = mongoose.model('Note');
+exports.User 	 = mongoose.model('User');
+exports.Article  = mongoose.model('Article');
+exports.Reply    = mongoose.model('Reply');
+exports.Note     = mongoose.model('Note');
 exports.Notebook = mongoose.model('Notebook');

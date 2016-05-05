@@ -4,7 +4,6 @@ var express      = require('express'),
     logger       = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser   = require('body-parser'),
-
     routes       = require('./router'),
     app          = express();
 
