@@ -1,6 +1,6 @@
 /**
  * @author: zimyuan
- * @last-edit_date: 2016-05-04
+ * @last-edit_date: 2016-05-05
  */
 
 var mongoose  = require('mongoose'),
@@ -8,16 +8,12 @@ var mongoose  = require('mongoose'),
 	ObjectId  = Schema.ObjectId;
 	BaseModel = require('./base_model');
 
-var ArticleSchema = new Schema({
-	type		: {type: String},					// 类型，包括文章和相册
-
-	title       : {type: String},					// 文章标题
-	content 	: {type: String},					// 文章内容
+var NoteSchema = new Schema({
+	title       : {type: String},					// 笔记标题
+	content 	: {type: String},					// 笔记内容
 
 	author      : {type: ObjectId},					// 作者
-
-	top			: {type: Boolean, default: false},	// 是否是置顶帖子
-	good 		: {type: Boolean, default: false},	// 是否是被推荐的帖子
+	notebook	: {type: ObjectId},					// 所归属的笔记本
 
 	reply_count : {type: Number, default: 0},		// 回复数量
 	visit_count : {type: Number, default: 0},		// 阅读数量
@@ -27,9 +23,12 @@ var ArticleSchema = new Schema({
 
 	tab         : {type: String},					// 标签
 	deleted     : {type: Boolean, default: false},	// 文章是否被删除	
+
+	private     : {type: Boolean, default: false},	// 是否为私密内容
+
 });
 
-ArticleSchema.plugin(BaseModel);
-ArticleSchema.index({create_at: -1});
+NoteSchema.plugin(BaseModel);
+NoteSchema.index({create_at: -1});
 
-mongoose.model('Article', ArticleSchema);
+mongoose.model('Note', NoteSchema);

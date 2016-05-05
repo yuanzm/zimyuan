@@ -1,5 +1,7 @@
-/*
- * models出口文件
+/**
+ * @desc: models出口文件
+ * @author: zimyuan
+ * @last-edit_date: 2016-05-05
  */
 
 var mongoose = require('mongoose'),
@@ -14,7 +16,11 @@ mongoose.connect(config.db, function(err) {
 
 // models
 require('./article.js');
-// require('./message.js');
+require('./reply.js');
+require('./note.js');
+require('./notebook.js');
 
 exports.Article = mongoose.model('Article');
-// exports.Message = mongoose.model('Message')
+exports.Reply = mongoose.model('Reply');
+exports.Note = mongoose.model('Note');
+exports.Notebook = mongoose.model('Notebook');
