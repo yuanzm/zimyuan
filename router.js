@@ -9,7 +9,7 @@
 var express = require("express"),
 	// auth 	= require('./middlewares/auth'),
 	// site 	= require("./controllers/site"),
-	// sign 	= require("./controllers/sign"),
+	sign 	= require("./controllers/sign"),
 	// user 	= require("./controllers/user"),
 	// chat 	= require('./controllers/chat'),
 	// config 	= require('./config'),
@@ -22,7 +22,7 @@ var express = require("express"),
 
 // // 注册登录登出
 // router.get('/signup', sign.showSignUp);	// 渲染注册页面
-// router.post('/signup', sign.signUp);	// 登录请求
+router.post('/signup', sign.signUp);	// 登录请求
 // router.get('/signin', sign.showSignIn);	// 显示登录页面
 // router.post('/signin', sign.signIn);		// 登录请求
 // router.post('/signout', sign.signOut)	// 登出请求

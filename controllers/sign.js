@@ -1,8 +1,8 @@
+
 var validator 	   = require('validator'),
 	EventProxy 	   = require('eventProxy'),
-	config 		   = require('../config'),
 	User 		   = require('../proxy').User,
-	tools          = require('../common/tools');
+	tools          = require('../common/tools'),
 	authMiddleWare = require('../middlewares/auth');
 
 exports.showSignUp = function(req, res) {
@@ -31,21 +31,23 @@ exports.signUp = function(req, res, next) {
 	var password   = validator.trim(req.body.password);
 	var rePassword = validator.trim(req.body.rePassword);
 
-	if ( [account, email, nick_name, password, rePassword].some(function(item) { return item === '' }) )
+	if ( [account, email, nick_name, password, rePassword].some(function(item) { return item === '' }) ) {
 		return ep.emit('sign_up_error', 422, '信息填写不完整');
+	}
 
-	if (!validator.isEmail(email)) {
+	if (!validator.isEmail(email))
     	return ep.emit('sign_up_error', 422, '邮箱不合法');
 
   	if ( password !== rePassword )
 	    return ep.emit('sign_up_error', 422, '两次密码输入不一致。');
 
 	var query = {
-		"$or": {
+		'$or': {
 			account : account,
 			email   : email
 		}
 	};
+
 	User.getUsersByQuery(query, {}, function(err, user) {
 		if ( err )
 			return next(err);
@@ -63,13 +65,13 @@ exports.signUp = function(req, res, next) {
           			errcode: 0,
           			message: '注册成功'
           		};
-          		res.json(data);
+          		res.json(rdata);
       		});
-      	})
+      	});
 	});
-};
+}
 
-exports.login = function(req, res, next) {
+exports.login = function(req, res, next){
 	var ep = new EventProxy();		
 
 	ep.fail(next);
@@ -86,9 +88,6 @@ exports.login = function(req, res, next) {
 
 	if ( [account, password].some(function(item) { return item === '' }) )
 		return ep.emit('login_error', 422, '信息填写不完整');
-
-	if (!validator.isEmail(email)) {
-    	return ep.emit('login_error', 422, '邮箱不合法');
 
     User.getUserByAccount(account, function(err, user) {
     	if ( err )
@@ -111,7 +110,7 @@ exports.login = function(req, res, next) {
       			message: '登录成功'
       		};
 
-      		res.json(data);
-    	})
+      		res.json(rdata);
+    	});
     });
-};
+}

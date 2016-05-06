@@ -34,7 +34,7 @@ exports.getArticleById = function(id, callback) {
 
 	var events = ['article', 'author'];
 
-	ep.assign(events, function(null, article, author) {
+	ep.assign(events, function(article, author) {
 
 		if ( !article )
 			return callback(null, null, null);
@@ -53,14 +53,14 @@ exports.getArticleById = function(id, callback) {
 
 		ep.emit('article', article);
 
-		User.getUserById(article.author, ep.done(author) {
+		User.getUserById(article.author, ep.done(function(author) {
 			if ( !author ) {
 				ep.unbind();
 				return callback(null, '该用户不存在或者已经被销毁');
 			}
 
 			ep.emit('author', author);
-		});		
+		}));		
 	}));
 };
 
@@ -69,7 +69,7 @@ exports.getFullArticle = function(id, callback) {
 
 	var events = ['article', 'author', 'replies'];
 
-	ep.assign(events, function(null, article, author, replies) {
+	ep.assign(events, function(article, author, replies) {
 
 		if ( !article )
 			return callback(null, null, null, null);
@@ -78,7 +78,7 @@ exports.getFullArticle = function(id, callback) {
 
 	}).fail(callback);
 
-	Article.findOne({_id: id}, ep.done(article) {
+	Article.findOne({_id: id}, ep.done(function(article) {
 		// 文章查询
 		if ( !article ) {
 			ep.unbind();
@@ -86,17 +86,15 @@ exports.getFullArticle = function(id, callback) {
 		}
 		ep.emit('article', article);
 
-		User.getUserById(article.author, ep.done(author) {
+		User.getUserById(article.author, ep.done(function(author) {
 			if ( !author ) {
 				ep.unbind();
 				return callback(null, '该用户不存在或者已经被销毁');
 			}
 
 			ep.emit('author', author);
-		});
+		}) );
 
-		Reply.getArticleRepliesById(article._id, ep.done(replies) {
-			ep.emit('replies', replies);	
-		});
-	});
+		Reply.getArticleRepliesById(article._id, ep.done('replies'));
+	}));
 };
