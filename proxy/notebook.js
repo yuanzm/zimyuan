@@ -31,3 +31,23 @@ exports.getNotebookById = function(id, callback) {
 
 	Note.find({notebook: id}, callback);
 };
+
+
+/**
+ * @desc: 根据笔记本标题查询笔记本
+ * @param {String} title: 笔记本标题
+ * @param {Function} callback: 查询回调函数
+ */ 
+exports.getNotebookByTitle = function(title, callback) {
+	Notebook.find({title: title}, callback);
+};
+
+/**
+ * @desc: 根据笔记本标题查询笔记本
+ * @param {String} title: 笔记本标题
+ * @param {Function} callback: 查询回调函数
+ */ 
+exports.getBookById = function(id, callback) {
+	Notebook.find({_id: id}, callback);
+};
+

@@ -7,6 +7,8 @@ var NotebookSchema = new Schema({
 	title 	   : {type: String},					// 笔记本标题
 	author 	   : {type: ObjectId},					// 笔记本作者
 
+	note_count : {type: Number, default: 0},		// 笔记本中笔记的条数
+
 	create_at  : {type: Date, default: Date.now},	// 笔记本创建时间
 	update_at  : {type: Date, default: Date.now},	// 笔记本更新时间
 

@@ -2,10 +2,14 @@ var express      = require('express'),
     path         = require('path'),
     favicon      = require('serve-favicon'),
     logger       = require('morgan'),
+    session      = require('express-session')
     cookieParser = require('cookie-parser'),
     bodyParser   = require('body-parser'),
     routes       = require('./router'),
+    config       = require('./config'),
     app          = express();
+
+var RedisStore = require('connect-redis')(session);
 
 // 数据库连接
 require('./models');
@@ -21,6 +25,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    secret: config.session_secret,
+    store: new RedisStore({
+        port: config.redis_port,
+        host: config.redis_host,
+        db  : config.redis_db
+    }),
+    resave: true,
+    saveUninitialized: true,
+}));
 
 app.use('/', routes);
 

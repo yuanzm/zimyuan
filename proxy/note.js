@@ -36,3 +36,12 @@ exports.getNoteById = function(id, callback) {
 
 	Note.findOne({_id: id}, callback);
 };
+
+/**
+ * @desc: 删除一个笔记本里面的所有笔记
+ * @param {String} bookId: 笔记本id
+ * @param {Function} callback: 查询回调函数
+ */ 
+exports.delAllNoteInOneBook = function(bookId, callback) {
+	Note.update({notebook: bookId}, {$set: {deleted: true}}, {multi: true}, callback);
+};
