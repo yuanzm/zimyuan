@@ -1,9 +1,9 @@
-var app = require('../app');
+var app     = require('../app');
 var request = require('supertest')(app);
-var should = require("should"); 
+var should  = require("should"); 
 
 describe('site/test.js', function() {
-    var loginname = 'yuanzm' + Math.random(1);
+    var account = 'yuanzm' + Math.random(1);
     var email     =  Math.random(1) + '1229084233@qq.com';
     var password  = 'password';
     var nick_name = 'zimyuan';
@@ -12,15 +12,30 @@ describe('site/test.js', function() {
         it('should not sign up an user when account is empty', function(done) {
             request.post('/signup')
             .send({
-                account  : '',
-                password : password,
-                email    : email,
-                nick_name: nick_name,
-                rePassword: password
+                account    : '',
+                password   : password,
+                email      : email,
+                nick_name  : nick_name,
+                rePassword : password
+            })
+            .expect(function(err, res) {
+                should.not.exist(err);
+                res.text.should.containEql('信息填写不完整');
+                done();
+            });
+        });
+        it('should sign up an user', function(done) {
+            request.post('/signup')
+            .send({
+                account    : account,
+                password   : password,
+                email      : email,
+                nick_name  : nick_name,
+                rePassword : password
             })
             .expect(200, function(err, res) {
                 should.not.exist(err);
-                res.text.should.containEql('信息填写不完整');
+                res.text.should.containEql('注册成功');
                 done();
             });
         });
