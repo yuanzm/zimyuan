@@ -19,7 +19,7 @@ exports.addNotebook = function(req, res, next) {
 			errcode: errcode,
 			message: message
 		};
-		res.json(data);
+		res.json(rdata);
 	});
 
 	var title      = validator.trim(req.body.title);
@@ -47,11 +47,14 @@ exports.addNotebook = function(req, res, next) {
 				message: '创建成功'
 			};
 
-			res.json(data);
+			res.json(rdata);
 		});
 	});
 };
 
+/**
+ * @desc: 删除笔记本
+ */ 
 exports.delNotebook = function(req, res, next) {
 	var ep = new EventProxy();
 
@@ -70,7 +73,7 @@ exports.delNotebook = function(req, res, next) {
 		return epe.emit('del_note_book_error', 422, '缺少notebook_id字段');
 
 	Notebook.getBookById(nid, function(err, book) {
-		if ( err )
+		if ( !book )
 			return ep.emit('del_note_book_error', 422, '该笔记本不存在');
 
 		if ( req.session.user.role !== 'manager' && book.author !== req.session.user._id )
@@ -90,9 +93,56 @@ exports.delNotebook = function(req, res, next) {
 					errcode: 0,
 					message: '删除成功'
 				};
-				res.json(data);
+				res.json(rdata);
 			});
 		});
 
+	});
+};
+
+/**
+ * @desc: 更新笔记本
+ */ 
+exports.update = function(req, res, next) {
+	var ep = new EventProxy();
+
+	ep.fail(next);
+	ep.on('update_note_book_error', function(errcode, message) {
+		var rdata = {
+			errcode: errcode,
+			message: message
+		};
+		res.json(data);
+	});
+
+	var nid   = validator.trim(req.body.notebook_id);
+	var title = validator.trim(req.body.title);
+
+	if ( nid === '' || title === '' )
+		return ep.emit('update_note_book_error', 422, '表单填写不完整');
+
+	Notebook.getBookById(nid, function(err, book) {
+		if ( err )
+			return next(err);
+
+		if ( !book )
+			return ep.emit('update_note_book_error', 422, '笔记本不存在');
+
+		if ( req.session.user.role !== 'manager' && book.author !== req.session.user._id )
+			return ep.emit('update_note_book_error', 403, '没有更新删除该笔记本');
+
+		book.title 	    = title;
+		topic.update_at = new Date();
+	
+		book.save(function(err) {
+			if ( err )
+				return next(err);
+
+			var rdata = {
+				errcode: 0,
+				message: '更新成功'
+			};
+			res.json(rdata);
+		});
 	});
 };
