@@ -25,14 +25,14 @@ exports.addNote = function(req, res, next) {
 			errcode: errcode,
 			message: message
 		};
-		res.json(data);
+		res.json(rdata);
 	});
 
-	var title      = validator.trim(req.body.title);
-	var content    = validator.trim(req.body.content);
-	var author     = validator.trim(req.body.author);   		
-	var notebook   = validator.trim(req.body.notebook);
-	var tab        = validator.trim(req.body.tab);
+	var title      = req.body.title;
+	var content    = req.body.content;
+	var author     = req.body.author;   		
+	var notebook   = req.body.notebook;
+	var tab        = req.body.tab;
 	var private    = req.body.private;
 
 	var check = [title, content, author, notebook, tab];
@@ -40,7 +40,7 @@ exports.addNote = function(req, res, next) {
 	if ( check.some(function(item) { return item === '' }) )
 		return ep.emit('add_note_error', 422, '表单填写不完整');
 
-	Notebook.getBookById(ep.done(function(book) {
+	Notebook.getBookById(notebook, ep.done(function(book) {
 		if ( !book )
 			return ep.emit('add_note_error', 403, '笔记本不存在');
 

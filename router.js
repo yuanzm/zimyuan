@@ -9,6 +9,7 @@
 var express  = require("express"),
 	auth 	 = require('./middlewares/auth'),
 	notebook = require('./controllers/notebook'),
+	note     = require('./controllers/note'),
 	// site 	= require("./controllers/site"),
 	sign 	 = require("./controllers/sign"),
 	// user 	= require("./controllers/user"),
@@ -30,8 +31,13 @@ router.post('/signin', sign.login);		// 登录请求
 
 // 笔记本
 router.post('/notebook/create', notebook.addNotebook);	// 创建笔记本
-router.post('/notebook/update', notebook.update);	// 创建笔记本
+router.post('/notebook/update', notebook.update);		// 创建笔记本
 router.post('/notebook/delete', notebook.delNotebook);	// 创建笔记本
+
+// 笔记
+router.post('/note/create', note.addNote);		// 创建笔记本
+router.post('/note/update', note.update);		// 创建笔记本
+router.post('/note/delete', note.deleteNote);	// 创建笔记本
 
 // 上传文件
 // router.get('/uptoken', auth.userRequired, upload.uptoken);
