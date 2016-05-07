@@ -63,9 +63,7 @@ exports.signUp = function(req, res, next) {
 
 
 	    tools.bhash(password, function (err, passhash) {
-	    	console.log(passhash)
 		    User.newAndSave(account, passhash, email, nick_name, function (err) {
-		    	console.log(err);
     	    	if (err)
           			return next(err);
 

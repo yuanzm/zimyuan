@@ -1,9 +1,9 @@
-var mongoose = require('mongoose');
-var UserModel  = mongoose.model('User');
 var config = require('../config');
 var eventproxy = require('eventproxy');
 var config     = require('../config');
 var UserProxy  = require('../proxy').User;
+var mongoose   = require('mongoose');
+var UserModel  = mongoose.model('User');
 
 function gen_session(user, res) {
     var auth_token = user.role + '$$$$'; // 以后可能会存储更多信息，用 $$$$ 来分隔
@@ -44,6 +44,7 @@ exports.authUser = function(req, res, next) {
         user = res.locals.current_user = req.session.user = new UserModel(user);
         next();
     });
+    
     if (req.session.user) {
         ep.emit('get_user', req.session.user);
     } else {

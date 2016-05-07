@@ -48,6 +48,6 @@ exports.getNotebookByTitle = function(title, callback) {
  * @param {Function} callback: 查询回调函数
  */ 
 exports.getBookById = function(id, callback) {
-	Notebook.find({_id: id}, callback);
+	Notebook.findOne({_id: id}, callback);
 };
 

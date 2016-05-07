@@ -23,19 +23,19 @@ exports.addNotebook = function(req, res, next) {
 	});
 
 	var title      = validator.trim(req.body.title);
-	var author     = validator.trim(req.body.author);   		
 	var private    = req.body.private;
+	var author     = req.session.user._id; 
 
 	var check = [title, author];
 
 	if ( check.some(function(item) { return item === '' }) )
 		return ep.emit('add_note_book_error', 422, '表单填写不完整');
 
-	Notebook。getNotebookByTitle(title, function(err, book) {
+	Notebook.getNotebookByTitle(title, function(err, book) {
 		if ( err )
 			return next(err);
 
-		if ( book )
+		if ( book.length )
 			return ep.emit('add_note_book_error', 422, '笔记本已经存在');
 
 		Notebook.newAndSave(title, author, private, function(err, book) {
@@ -70,7 +70,7 @@ exports.delNotebook = function(req, res, next) {
 	var nid = req.body.notebook_id;
 
 	if ( !nid )
-		return epe.emit('del_note_book_error', 422, '缺少notebook_id字段');
+		return epe.emit('del_note_book_error', 422, '缺少nid字段');
 
 	Notebook.getBookById(nid, function(err, book) {
 		if ( !book )
@@ -112,11 +112,12 @@ exports.update = function(req, res, next) {
 			errcode: errcode,
 			message: message
 		};
-		res.json(data);
+		res.json(rdata);
 	});
 
-	var nid   = validator.trim(req.body.notebook_id);
-	var title = validator.trim(req.body.title);
+	var nid     = req.body.nid;
+	var title   = req.body.title;
+	var private = req.body.private; 
 
 	if ( nid === '' || title === '' )
 		return ep.emit('update_note_book_error', 422, '表单填写不完整');
@@ -128,11 +129,14 @@ exports.update = function(req, res, next) {
 		if ( !book )
 			return ep.emit('update_note_book_error', 422, '笔记本不存在');
 
+		// console.log(book.author);
+		console.log(req.session.user)
 		if ( req.session.user.role !== 'manager' && book.author !== req.session.user._id )
 			return ep.emit('update_note_book_error', 403, '没有更新删除该笔记本');
 
 		book.title 	    = title;
-		topic.update_at = new Date();
+		book.private    = private;
+		book.update_at = new Date();
 	
 		book.save(function(err) {
 			if ( err )

@@ -6,15 +6,16 @@
  */
 
 // 引入所需模块
-var express = require("express"),
-	// auth 	= require('./middlewares/auth'),
+var express  = require("express"),
+	auth 	 = require('./middlewares/auth'),
+	notebook = require('./controllers/notebook'),
 	// site 	= require("./controllers/site"),
-	sign 	= require("./controllers/sign"),
+	sign 	 = require("./controllers/sign"),
 	// user 	= require("./controllers/user"),
 	// chat 	= require('./controllers/chat'),
 	// config 	= require('./config'),
 	// upload 	= require('./controllers/upload'),
-	router  = express.Router();
+	router   = express.Router();
 
 // // home page
 // router.get('/', site.index);
@@ -27,12 +28,12 @@ router.post('/signup', sign.signUp);	// 登录请求
 router.post('/signin', sign.login);		// 登录请求
 // router.post('/signout', sign.signOut)	// 登出请求
 
-// // 用户
-// router.get('/user/:name', user.index);	// 显示用户个人中心
-// router.get('/setting', user.showSetting);	// 显示用户设置中心
-// router.post('/setting', auth.userRequired, user.setting);	// 更新用户设置请求	
+// 笔记本
+router.post('/notebook/create', notebook.addNotebook);	// 创建笔记本
+router.post('/notebook/update', notebook.update);	// 创建笔记本
+router.post('/notebook/delete', notebook.delNotebook);	// 创建笔记本
 
-// // 上传文件
+// 上传文件
 // router.get('/uptoken', auth.userRequired, upload.uptoken);
 // router.post('/downtoken', auth.userRequired, upload.downtoken);
 

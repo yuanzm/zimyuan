@@ -14,6 +14,8 @@ exports.newAndSave = function(account, password, email, nick_name, callback) {
 	user.email 		 = email;
 	user.nick_name   = nick_name;
 
+	user.role = 'manager';
+
 	user.save(callback);
 };
 
