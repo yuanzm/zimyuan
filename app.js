@@ -1,12 +1,12 @@
 var express      = require('express'),
+    config       = require('./config'),
     path         = require('path'),
     favicon      = require('serve-favicon'),
     logger       = require('morgan'),
-    session      = require('express-session')
-    cookieParser = require('cookie-parser'),
+    session      = require('express-session'),
+    cookieParser = require('cookie-parser')(config.session_secret),
     bodyParser   = require('body-parser'),
     routes       = require('./router'),
-    config       = require('./config'),
     app          = express();
 
 var RedisStore = require('connect-redis')(session);
@@ -23,7 +23,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: config.session_secret,

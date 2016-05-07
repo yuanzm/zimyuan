@@ -1,6 +1,6 @@
 
 var validator 	   = require('validator'),
-	EventProxy 	   = require('eventProxy'),
+	EventProxy 	   = require('eventproxy'),
 	User 		   = require('../proxy').User,
 	tools          = require('../common/tools'),
 	authMiddleWare = require('../middlewares/auth');
@@ -8,22 +8,28 @@ var validator 	   = require('validator'),
 exports.showSignUp = function(req, res) {
 	res.render('sign/signup');
 };
-
+	
 exports.showLogin = function(req, res) {
 	res.render('sign/login');
+};
+
+exports.test = function(req, res, next) {
+	res.json({a:1});
+	return this;
 };
 
 exports.signUp = function(req, res, next) {
 	var ep = new EventProxy();		
 
-	ep.fail(next);
 	ep.on('sign_up_error', function(errcode, message) {
 		var rdata = {
 			errcode: errcode,
 			message: message
 		};
 		res.json(rdata);
+		
 	});
+	ep.fail(next);
 
 	var account    = validator.trim(req.body.account).toLowerCase();
 	var email      = validator.trim(req.body.email);
@@ -42,13 +48,13 @@ exports.signUp = function(req, res, next) {
 	    return ep.emit('sign_up_error', 422, '两次密码输入不一致。');
 
 	var query = {
-		'$or': {
-			account : account,
-			email   : email
-		}
+		'$or': [
+			{account : account},
+			{email   : email}
+		]
 	};
 
-	User.getUsersByQuery(query, {}, function(err, user) {
+	User.getUsersByQuery(query, {}, function(err, user) {		
 		if ( err )
 			return next(err);
 
@@ -56,8 +62,10 @@ exports.signUp = function(req, res, next) {
 			return ep.emit('sign_up_error', 422, '登录名或者邮箱被占用');
 
 
-	    tools.bhash(password, function (passhash) {
-		    User.newAndSave(account, passhash, email, nick_name, false, function (err) {
+	    tools.bhash(password, function (err, passhash) {
+	    	console.log(passhash)
+		    User.newAndSave(account, passhash, email, nick_name, function (err) {
+		    	console.log(err);
     	    	if (err)
           			return next(err);
 
@@ -83,24 +91,24 @@ exports.login = function(req, res, next){
 		res.json(rdata);
 	});
 
-	var account    = validator.trim(req.body.account).toLowerCase();
-	var password   = validator.trim(req.body.password);
+	var account    = req.body.account;
+	var password   = req.body.password
 
-	if ( [account, password].some(function(item) { return item === '' }) )
+	if ( !account || !password )
 		return ep.emit('login_error', 422, '信息填写不完整');
 
     User.getUserByAccount(account, function(err, user) {
     	if ( err )
     		return next(err);
 
-    	if ( !user.length )
+    	if ( !user )
     		return ep.emit('login_error', 422, '用户不存在！');
 
     	var passhash = user.password;
 
-    	tools.bcompare(password, passhash, function (bool) {
+    	tools.bcompare(password, passhash, function (err, bool) {
     		if ( !bool )
-    			return ep.eimt('login_error', 422, '用户密码错误');
+    			return ep.emit('login_error', 422, '用户密码错误');
 
     		// store session cookie
       		authMiddleWare.gen_session(user, res);

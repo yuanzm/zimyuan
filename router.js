@@ -21,10 +21,10 @@ var express = require("express"),
 // router.get('/chat', chat.index);
 
 // // 注册登录登出
-// router.get('/signup', sign.showSignUp);	// 渲染注册页面
+router.get('/signup', sign.showSignUp);	// 渲染注册页面
 router.post('/signup', sign.signUp);	// 登录请求
 // router.get('/signin', sign.showSignIn);	// 显示登录页面
-// router.post('/signin', sign.signIn);		// 登录请求
+router.post('/signin', sign.login);		// 登录请求
 // router.post('/signout', sign.signOut)	// 登出请求
 
 // // 用户
@@ -35,5 +35,7 @@ router.post('/signup', sign.signUp);	// 登录请求
 // // 上传文件
 // router.get('/uptoken', auth.userRequired, upload.uptoken);
 // router.post('/downtoken', auth.userRequired, upload.downtoken);
+
+router.get('/test', sign.test);	// 登录请求
 
 module.exports = router;
