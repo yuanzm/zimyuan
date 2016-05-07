@@ -64,14 +64,15 @@ exports.delNotebook = function(req, res, next) {
 			errcode: errcode,
 			message: message
 		};
-		res.json(data);
+		res.json(rdata);
 	});
 
-	var nid = req.body.notebook_id;
+	var nid = req.body.nid;
 
 	if ( !nid )
-		return epe.emit('del_note_book_error', 422, '缺少nid字段');
+		return ep.emit('del_note_book_error', 422, '缺少nid字段');
 
+	// console.log(nid)
 	Notebook.getBookById(nid, function(err, book) {
 		if ( !book )
 			return ep.emit('del_note_book_error', 422, '该笔记本不存在');
@@ -79,7 +80,7 @@ exports.delNotebook = function(req, res, next) {
 		if ( req.session.user.role !== 'manager' && book.author !== req.session.user._id )
 			return ep.emit('del_note_book_error', 403, '没有权限删除该笔记本');
 
-		Note.delAllNoteInOneBook(function(err) {
+		Note.delAllNoteInOneBook(nid, function(err) {
 			if ( err )
 				return next(err);
 
@@ -129,8 +130,6 @@ exports.update = function(req, res, next) {
 		if ( !book )
 			return ep.emit('update_note_book_error', 422, '笔记本不存在');
 
-		// console.log(book.author);
-		console.log(req.session.user)
 		if ( req.session.user.role !== 'manager' && book.author !== req.session.user._id )
 			return ep.emit('update_note_book_error', 403, '没有更新删除该笔记本');
 

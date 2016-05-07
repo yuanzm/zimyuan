@@ -79,7 +79,7 @@ describe('notebook/test', function() {
             .send({
                 title   : title,
                 private : private,
-                nid     : support.normalUser._id
+                nid     : support.normalUser2._id
             })
             .expect(200, function(err, res) {
                 should.not.exist(err);
@@ -105,19 +105,29 @@ describe('notebook/test', function() {
     });
 
     describe('notebook delete', function() {
-        it('should not delete an notebook when nid or title is missing', function(done) {
-            request.post('/notebook/update')
+        it('should not delete an notebook when the nid missing', function(done) {
+            request.post('/notebook/delete')
             .set('Cookie', support.normalUserCookie)
             .send({
-                title   : '',
-                private : private,
+                // nid     : support.notebook._id
+            })
+            .expect(200, function(err, res) {
+                should.not.exist(err);
+                res.text.should.containEql('缺少nid字段');
+                done();
+            });
+        });
+        it('should delete an notebook', function(done) {
+            request.post('/notebook/delete')
+            .set('Cookie', support.normalUserCookie)
+            .send({
                 nid     : support.notebook._id
             })
             .expect(200, function(err, res) {
                 should.not.exist(err);
-                res.text.should.containEql('表单填写不完整');
+                res.text.should.containEql('删除成功');
                 done();
             });
-        }); 
+        });
     });
 });

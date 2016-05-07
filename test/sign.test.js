@@ -2,7 +2,7 @@ var app = require('../app');
 var request = require('supertest')(app);
 var should = require("should"); 
 
-describe('sign/test.js', function() {
+describe('sign/test', function() {
     var account   = 'yuanzm' + Math.random(1);
     var password  = 'password';
     var email     = Math.random(10) +  '1229084233@qq.com';
