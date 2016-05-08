@@ -1,5 +1,5 @@
 var validator 	   = require('validator'),
-	EventProxy 	   = require('eventProxy'),
+	EventProxy 	   = require('eventproxy'),
 	config 		   = require('../config'),
 	Note 		   = require('../proxy').Note,
 	Notebook       = require('../proxy').Notebook,

@@ -10,7 +10,7 @@ var express  = require("express"),
 	auth 	 = require('./middlewares/auth'),
 	notebook = require('./controllers/notebook'),
 	note     = require('./controllers/note'),
-	// site 	= require("./controllers/site"),
+	site 	= require("./controllers/site"),
 	sign 	 = require("./controllers/sign"),
 	// user 	= require("./controllers/user"),
 	// chat 	= require('./controllers/chat'),
@@ -19,7 +19,7 @@ var express  = require("express"),
 	router   = express.Router();
 
 // // home page
-// router.get('/', site.index);
+router.get('/', site.index);
 // router.get('/chat', chat.index);
 
 // // 注册登录登出

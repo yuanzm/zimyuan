@@ -18,7 +18,7 @@ var RedisStore = require('connect-redis')(session);
 require('./models');
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'public/src/pages'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
@@ -27,7 +27,20 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser);
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
+var options = {
+    dotfiles: 'ignore',
+    etag: false,
+    extensions: ['htm', 'html'],
+    index: false,
+    maxAge: '1d',
+    redirect: false,
+    setHeaders: function (res, path, stat) {
+        res.set('x-timestamp', Date.now());
+    }
+};
+app.use(express.static(path.join(__dirname, 'public'), options));
+
 app.use(session({
     secret: config.session_secret,
     store: new RedisStore({

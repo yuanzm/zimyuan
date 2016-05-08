@@ -1,0 +1,4 @@
+apps:
+  - script   : bin/www
+    exec_mode: fork
+    watch  : true

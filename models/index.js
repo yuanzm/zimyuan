@@ -20,9 +20,11 @@ require('./article.js');
 require('./reply.js');
 require('./note.js');
 require('./notebook.js');
+require('./profile.js');
 
 exports.User 	 = mongoose.model('User');
 exports.Article  = mongoose.model('Article');
 exports.Reply    = mongoose.model('Reply');
 exports.Note     = mongoose.model('Note');
 exports.Notebook = mongoose.model('Notebook');
+exports.Profile  = mongoose.model('Profile');
