@@ -18,11 +18,11 @@ var express  = require("express"),
 	// upload 	= require('./controllers/upload'),
 	router   = express.Router();
 
-// // home page
+// home page
 router.get('/', site.index);
-// router.get('/chat', chat.index);
+router.get('/profile', site.profile);
 
-// // 注册登录登出
+// 注册登录登出
 router.get('/signup', sign.showSignUp);	// 渲染注册页面
 router.post('/signup', sign.signUp);	// 登录请求
 // router.get('/signin', sign.showSignIn);	// 显示登录页面

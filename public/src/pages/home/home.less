@@ -89,6 +89,36 @@
 	text-indent: 1em;
 }
 
+.inline-list {
+	margin-top: 1em;
+	.inline-list-item {
+		display: inline-block;
+	}
+	.icon {
+	    vertical-align: text-bottom;
+	}
+}
+
+.inline-list-item-link {
+    background-color: #fff;
+    color: #c66;
+    font-size: 1em;
+    padding: .2em 0.5em;
+    border-radius: .25em;
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 1em;
+}
+
+@media only screen and (max-width: 28em) {
+	.inline-list {
+		.icon {
+			width: 15px;
+			height: 15px;
+		}
+	}
+}
+
 .recommend {
 	padding: 0 2em;
 

@@ -36,3 +36,7 @@ exports.index = function(req, res, next) {
 	// 查询最新的笔记
 	Note.getLastNotes(2, ep.done('note'));
 };
+
+exports.profile = function(req, res, next) {
+	res.render('profile/profile');
+}

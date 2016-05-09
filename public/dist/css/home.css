@@ -276,6 +276,7 @@ body:after {
 }
 .header__logo {
   border-color: #444;
+  color: #444;
 }
 .header__nav-trigger {
   position: absolute;
@@ -450,6 +451,8 @@ body:after {
   display: inline-block;
   width: 60%;
   max-width: 350px;
+  height: auto;
+  min-height: 250px;
   margin: 0 auto .5em;
   background: url("../../assets/images/bg-shadow.gif") no-repeat center bottom;
   background-size: 100%;
@@ -512,6 +515,31 @@ body:after {
   font-size: 1.25em;
   margin-bottom: 0;
   text-indent: 1em;
+}
+.inline-list {
+  margin-top: 1em;
+}
+.inline-list .inline-list-item {
+  display: inline-block;
+}
+.inline-list .icon {
+  vertical-align: text-bottom;
+}
+.inline-list-item-link {
+  background-color: #fff;
+  color: #c66;
+  font-size: 1em;
+  padding: .2em 0.5em;
+  border-radius: .25em;
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 1em;
+}
+@media only screen and (max-width: 28em) {
+  .inline-list .icon {
+    width: 15px;
+    height: 15px;
+  }
 }
 .recommend {
   padding: 0 2em;

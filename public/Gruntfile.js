@@ -59,7 +59,7 @@
 			watch: {
 				weixin: {
 				  files: ["src/**/*.js", "src/**/*.less", "src/**/*.jade"],
-				  tasks: ["browserify", "less", "copy", "jade"]
+				  tasks: ["browserify", "less", "copy"]
 				}
 			},
 			//less文件编译成css
@@ -68,6 +68,7 @@
 				  	files: {
 						'dist/css/icon.css': 'src/common/lib-icons.less',
 						'dist/css/home.css': 'src/pages/home/home.less',
+						'dist/css/profile.css': 'src/pages/profile/profile.less',
 						'dist/css/notes.css': 'src/pages/notes/notes.less',
 				  	}
 				}
@@ -125,8 +126,8 @@
 		grunt.registerTask("test", function() {
 		  return grunt.task.run([
 		  	"less",
-			"jade",
-			"connect",
+			// "jade",
+			// "connect",
 			"watch" 
 		  ]);
 		});
