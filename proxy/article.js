@@ -98,3 +98,7 @@ exports.getFullArticle = function(id, callback) {
 		Reply.getArticleRepliesById(article._id, ep.done('replies'));
 	}));
 };
+
+exports.getLastArticles = function(type, count, callback) {
+	Article.find({'type': type}).limit(count).sort({create_at: -1}).exec(callback);
+}

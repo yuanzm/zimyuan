@@ -7,7 +7,7 @@ var ProfileSchema = new Schema({
 	user       : {type: ObjectId},	// 用户id
 	avatar     : {type: String},	// 头像
 
-	profile    : {type: String},	// 简介
+	info       : {type: String},	// 简介
 
 	experience : {type: Array},		// 人生经历
 	hobby      : {type: Array},		// 爱好

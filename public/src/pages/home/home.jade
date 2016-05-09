@@ -17,45 +17,46 @@ block pagemain
 
 	div(class="zimyuan__hr")
 
-	section(class="recommend")
-		h2(class="recommend__title")
-			span(class="icon icons8-Document") 
-			&nbsp热门文章
-		ul(class="recommend__list")
-			li(class="recommend__list-item")
-				h3(class="recommend__list-item-title") Node入门
-				p(class="recommend__list-item-mata") 2016年4月29日
-			li(class="recommend__list-item")
-				h3(class="recommend__list-item-title") JavaScript中的this详解
-				p(class="recommend__list-item-mata") 2016年4月29日
+	if article.length
+		section(class="recommend")
+			h2(class="recommend__title")
+				span(class="icon icons8-Document") 
+				&nbsp热门文章
+			ul(class="recommend__list")
+				li(class="recommend__list-item")
+					h3(class="recommend__list-item-title") Node入门
+					p(class="recommend__list-item-mata") 2016年4月29日
+				li(class="recommend__list-item")
+					h3(class="recommend__list-item-title") JavaScript中的this详解
+					p(class="recommend__list-item-mata") 2016年4月29日
 
-	section(class="recommend")
-		h2(class="recommend__title")
-			span(class="icon icons8-Photo")
-			&nbsp精选照片
-		ul(class="recommend__list")
-			li(class="recommend__list-item")
-				div(class="recommend__list-item-photo")
-					img(src="http://jimramsden.com/content/02-photos/11-coast/thumb.jpg")
-				h3(class="recommend__list-item-title") 丽江七日游
-				p(class="recommend__list-item-mata") 2016年5月2日
-			li(class="recommend__list-item")
-				div(class="recommend__list-item-photo")
-					img(src="http://jimramsden.com/content/02-photos/10-hometown/thumb.jpg")
-				h3(class="recommend__list-item-title") 我的母校
-				p(class="recommend__list-item-mata") 2015年3月9日
+	if photo.length
+		section(class="recommend")
+			h2(class="recommend__title")
+				span(class="icon icons8-Photo")
+				&nbsp精选照片
+			ul(class="recommend__list")
+				li(class="recommend__list-item")
+					div(class="recommend__list-item-photo")
+						img(src="http://jimramsden.com/content/02-photos/11-coast/thumb.jpg")
+					h3(class="recommend__list-item-title") 丽江七日游
+					p(class="recommend__list-item-mata") 2016年5月2日
+				li(class="recommend__list-item")
+					div(class="recommend__list-item-photo")
+						img(src="http://jimramsden.com/content/02-photos/10-hometown/thumb.jpg")
+					h3(class="recommend__list-item-title") 我的母校
+					p(class="recommend__list-item-mata") 2015年3月9日
 
-	section(class="recommend")
-		h2(class="recommend__title")
-			span(class="icon icons8-Note")
-			&nbsp最新笔记
-		ul(class="recommend__list")
-			li(class="recommend__list-item")
-				h3(class="recommend__list-item-title") nginx下载安装
-				p(class="recommend__list-item-mata") 2016年5月2日
-			li(class="recommend__list-item")
-				h3(class="recommend__list-item-title") Express安全指南
-				p(class="recommend__list-item-mata") 2015年3月9日
+	if note
+		section(class="recommend")
+			h2(class="recommend__title")
+				span(class="icon icons8-Note")
+				&nbsp最新笔记
+			ul(class="recommend__list")
+				each one in note
+					li(class="recommend__list-item")
+						h3(class="recommend__list-item-title")=one.title
+						p(class="recommend__list-item-mata")=one.update_at_ago()
 
 	div(class="zimyuan__hr")
 

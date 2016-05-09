@@ -16,6 +16,8 @@ var RedisStore = require('connect-redis')(session);
 
 // 数据库连接
 require('./models');
+var initAdmin = require('./admin').initAdmin;
+initAdmin();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'public/src/pages'));

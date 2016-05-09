@@ -13,12 +13,12 @@ var EventProxy  = require('eventproxy'),
  * @param {String} thinking: 思考
  * @param {Function} callback: 查询回调函数
  */
-exports.newAndSave = function(user, avatar, profile, experience, hobby, hate, thinking, callback) {
+exports.newAndSave = function(user, avatar, info, experience, hobby, hate, thinking, callback) {
 	var profile 	   = new Profile();
 
 	profile.user       = user;
 	profile.avatar 	   = avatar;
-	profile.profile    = profile;
+	profile.info       = info;
 	profile.experience = experience;
 	profile.hobby      = hobby;
 	profile.hate       = hate;
@@ -33,5 +33,5 @@ exports.newAndSave = function(user, avatar, profile, experience, hobby, hate, th
  * @param {Function} callback: 查询回调函数
  */ 
 exports.getProfileByUserId = function(id, callback) {
-	Profile.findOne({_id: id}, callback);
+	Profile.findOne({user: id}, callback);
 };
