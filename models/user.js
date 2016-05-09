@@ -12,6 +12,8 @@ var UserSchema = new Schema({
 
 	role 	   : {type: String, default: 'common'},	 // 用户角色，默认为管理员
 
+	article_count: {type: Number, default: 0},		 // 文章数量
+
 	create_at  : {type: Date, default: Date.now},	 // 用户创建时间
 	update_at  : {type: Date, default: Date.now},	 // 用户更新时间
 
