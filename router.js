@@ -10,9 +10,9 @@ var express  = require("express"),
 	auth 	 = require('./middlewares/auth'),
 	notebook = require('./controllers/notebook'),
 	note     = require('./controllers/note'),
-	site 	= require("./controllers/site"),
+	site 	 = require("./controllers/site"),
 	sign 	 = require("./controllers/sign"),
-	// user 	= require("./controllers/user"),
+	profile  = require("./controllers/profile"),
 	// chat 	= require('./controllers/chat'),
 	// config 	= require('./config'),
 	// upload 	= require('./controllers/upload'),
@@ -20,7 +20,9 @@ var express  = require("express"),
 
 // home page
 router.get('/', site.index);
-router.get('/profile', site.profile);
+
+// 用户profile
+router.get('/profile/:user', site.profile);
 
 // 注册登录登出
 router.get('/signup', sign.showSignUp);	// 渲染注册页面

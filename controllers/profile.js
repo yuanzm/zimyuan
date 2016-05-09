@@ -5,6 +5,10 @@ var validator 	   = require('validator'),
 	tools          = require('../common/tools');
 	authMiddleWare = require('../middlewares/auth');
 
+exports.profile = function(req, res, next) {
+	res.render('profile/profile');
+}
+
 exports.addProfile = function(req, res, next) {
 	var ep = new EventProxy();
 
