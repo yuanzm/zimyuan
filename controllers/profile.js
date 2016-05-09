@@ -2,11 +2,31 @@ var validator 	   = require('validator'),
 	EventProxy 	   = require('eventproxy'),
 	config 		   = require('../config'),
 	Profile 	   = require('../proxy').Profile,
+	User 	       = require('../proxy').User,
 	tools          = require('../common/tools');
 	authMiddleWare = require('../middlewares/auth');
 
-exports.profile = function(req, res, next) {
-	res.render('profile/profile');
+exports.showProfile = function(req, res, next) {
+	var ep = new EventProxy();
+	ep.fail(next);
+
+	var useraccount = (  req.params.user
+				? req.params.user
+				: 'zimyuan' );
+	console.log(useraccount)
+
+	ep.all('user', 'profile', function(user, profile) {
+		res.render('profile/profile', {
+			user: user,
+			profile: profile
+		});
+	});
+
+	User.getUserByAccount(useraccount, ep.done('user'));
+
+	ep.on('user', function(user) {
+		Profile.getProfileByUserId(user._id, ep.done('profile'));
+	});
 }
 
 exports.addProfile = function(req, res, next) {

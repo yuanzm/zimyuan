@@ -7,7 +7,7 @@ block pagemain
 	section(class="profile")
 		figure(class="photo profile__photo")
 			img(class="profile__photo-img" src="/assets/images/profile.jpg" alt="zimyuan")
-			figcaption(class="profile__photo-desc") 我不是三胖
+			figcaption(class="profile__photo-desc") 照片实在是不好找啊
 
 		h3(class="profile__info-title") 晚上好，欢迎来到袁梓民的个人主页
 		p(class="profile__info-detail") 从大一开始了解web技术，大二开始正式投入学习web各种技术。正处于快速增长技能的阶段，对于web有着极高的热情，每天坚持学习web。目前为止对于前端技术比较了解，但是正在学习web后端技术，目标是成为一名优秀的web全端工程师。拥有较强的学习能力和沟通能力，能够比较良好的和团队成员协同完成开发。	
@@ -19,27 +19,23 @@ block pagemain
 				div(class="profile__detail-block")
 					h4(class="profile__detail-block-title") 经历...
 					ul(class="profile__detail-block-list")
-						li(class="profile__detail-block-item") 1993年出生
-						li(class="profile__detail-block-item") 2006年中考
-						li(class="profile__detail-block-item") 2009年高考
+						for item in profile.experience
+							li(class="profile__detail-block-item")=item
 				div(class="profile__detail-block")
 					h4(class="profile__detail-block-title") 爱好...
 					ul(class="profile__detail-block-list")
-						li(class="profile__detail-block-item") 1993年出生
-						li(class="profile__detail-block-item") 2006年中考
-						li(class="profile__detail-block-item") 2009年高考
+						for item in profile.hate
+							li(class="profile__detail-block-item")=item
 			div(class="profile__detail-right profile__detail-half")
 				div(class="profile__detail-block")
 					h4(class="profile__detail-block-title") 讨厌...
 					ul(class="profile__detail-block-list")
-						li(class="profile__detail-block-item") 1993年出生
-						li(class="profile__detail-block-item") 2006年中考
-						li(class="profile__detail-block-item") 2009年高考
+						for item in profile.hobby
+							li(class="profile__detail-block-item")=item
 				div(class="profile__detail-block")
 					h4(class="profile__detail-block-title") 思想...
 					ul(class="profile__detail-block-list")
-						li(class="profile__detail-block-item") 1993年出生
-						li(class="profile__detail-block-item") 2006年中考
-						li(class="profile__detail-block-item") 2009年高考
+						for item in profile.thinking
+							li(class="profile__detail-block-item")=item
 
 	div(class="zimyuan__hr")

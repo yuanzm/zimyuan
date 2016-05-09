@@ -22,7 +22,7 @@ var express  = require("express"),
 router.get('/', site.index);
 
 // 用户profile
-router.get('/profile/:user', site.profile);
+router.get('/profile/:user?', profile.showProfile);
 
 // 注册登录登出
 router.get('/signup', sign.showSignUp);	// 渲染注册页面
