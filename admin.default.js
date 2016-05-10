@@ -2,7 +2,7 @@ var User    = require('./proxy/user');
 var Profile = require('./proxy/profile'); 
 
 var account   = 'zimyuan';
-var password  = 'boss20100413wan';
+var password  = '';
 var email     = '1229084233@qq.com';
 var nick_name = 'zimyuan';
 

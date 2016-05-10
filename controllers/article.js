@@ -35,7 +35,7 @@ exports.addArticle = function(req, res, next) {
 
 	User.getUserById(author, ep.done(function(user) {
 		if ( !user )
-			return ep.emit('add_article_error', 422， '用户不存在');
+			return ep.emit('add_article_error', 422, '用户不存在');
 
 		Article.newAndSave(type, title, content, author, tab, ep.done(function(article) {
 			user.article_count += 1;
@@ -67,16 +67,17 @@ exports.updateArticle = function(req, res, next) {
 
 	var userid  = req.session.user._id;
 
-	var title   = req.body.title;
-	var content = req.body.content;   		
-	var tab     = req.body.tab;
+	var article_id = req.body.article_id;
+	var title      = req.body.title;
+	var content    = req.body.content;   		
+	var tab        = req.body.tab;
 
 	var check = [tab, title, content];
 
 	if ( check.some(function(item) { return item === '' }) )
 		return ep.emit('update_article_error', 422, '表单字段填写不完整');
 
-	Article.getArticleById(ep.done(function(article, author) {
+	Article.getArticleById(article_id, ep.done(function(article, author) {
 		if ( !article )
 			return ep.emit('update_article_error', 422, '文章不存在');
 
@@ -120,20 +121,14 @@ exports.deleteArticle = function(req, res, next) {
 	if ( !article_id )
 		return ep.emit('delete_article_error', 422, '请输入article_id字段');
 
-	Article.getArticleById(ep.done(function(article, author) {
+	Article.getArticleById(article_id, ep.done(function(article, author) {
 		if ( !article )
 			return ep.emit('delete_article_error', 422, '文章不存在');
 
 		if ( req.session.user.role !== 'manager' && article.author !== userid )
 			return ep.emit('delete_article_error', 403, '没有权限');		
 
-		article.deleted = 1;
-		article.save(ep.done('article_save'));
-
-		author.article_count -= 1;
-		author.save(ep.done('user_save'));
-
-		ep.on('article_save', 'user_save', function() {
+		ep.all('article_save', 'user_save', function() {
 			var rdata = {
 				errcode: 0,
 				message: '删除成功'
@@ -141,6 +136,12 @@ exports.deleteArticle = function(req, res, next) {
 
 			res.json(rdata);
 		});
+
+		article.deleted = 1;
+		article.save(ep.done('article_save'));
+
+		author.article_count -= 1;
+		author.save(ep.done('user_save'));
 	}));
 }	
 

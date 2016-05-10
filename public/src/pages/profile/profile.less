@@ -52,17 +52,17 @@
 .profile__info-title {
 	margin: .5em 0;
 }
+
 .profile__info-detail {
-	font-size: 18px;
 	text-indent: 2em;
 	margin:0;
 }
 
 .profile__detail {
 	overflow: hidden;
-	font-size: .75em;
 }
 
+// 四栏信息
 .profile__detail-half {
 	width: 50%;
 	float: left;
@@ -71,17 +71,30 @@
     -o-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 .profile__detail-right .profile__detail-block {
 	padding-left: 2em;
 }
 
+.profile__detail-block-title {
+    .icon {
+        vertical-align: text-bottom;
+    }
+}
+
 @media only screen and (min-width: 28em) {
-	.profile__detail-left {
-	    border-right: 1px solid rgba(0,0,0,0.1);
-	}
-	.profile__detail-left .profile__detail-block {
-	    padding-right: 2em;
-	}
+    .profile__info-detail {
+        font-size: 1em;
+    }
+    .profile__detail-left {
+        border-right: 1px solid rgba(0,0,0,0.1);
+    }
+    .profile__detail-left .profile__detail-block {
+        padding-right: 2em;
+    }
+    .profile {
+        font-size: .75em;
+    }
 }
 
 .profile__detail-block-title {
@@ -92,4 +105,26 @@
 
 .profile__detail-block-item {
     list-style: disc inside none;
+}
+
+// 手机端显示
+@media only screen and (max-width: 28em) {
+    .profile__info-detail {
+        font-size: 1.1em;
+    }
+
+    .profile__detail-half {
+        width: 100%;
+    }
+    .profile__detail-right .profile__detail-block {
+        padding-left: 0;
+    }
+    .profile__detail-block-title {
+        font-size: 1.25em;
+        .icon {
+            width: 1.25em;
+            height: 1.25em;
+            vertical-align: top;
+        }
+    }
 }

@@ -13,8 +13,8 @@ var express  = require("express"),
 	site 	 = require("./controllers/site"),
 	sign 	 = require("./controllers/sign"),
 	profile  = require("./controllers/profile"),
-	// chat 	= require('./controllers/chat'),
-	// config 	= require('./config'),
+	article  = require('./controllers/article'),
+	config 	= require('./config'),
 	// upload 	= require('./controllers/upload'),
 	router   = express.Router();
 
@@ -40,6 +40,10 @@ router.post('/notebook/delete', notebook.delNotebook);	// 创建笔记本
 router.post('/note/create', note.addNote);		// 创建笔记本
 router.post('/note/update', note.update);		// 创建笔记本
 router.post('/note/delete', note.deleteNote);	// 创建笔记本
+
+router.post('/article/create', article.addArticle);		// 创建文章
+router.post('/article/update', article.updateArticle);	// 更新文章
+router.post('/article/delete', article.deleteArticle);	// 删除文章
 
 // 上传文件
 // router.get('/uptoken', auth.userRequired, upload.uptoken);

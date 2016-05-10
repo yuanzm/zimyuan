@@ -9,7 +9,7 @@ var mongoose  = require('mongoose'),
 	BaseModel = require('./base_model');
 
 var ArticleSchema = new Schema({
-	type		: {type: String},					// 类型，包括文章和相册
+	type		: {type: String},					// 类型，包括blog和photo
 
 	title       : {type: String},					// 文章标题
 	content 	: {type: String},					// 文章内容

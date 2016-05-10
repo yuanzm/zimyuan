@@ -1,7 +1,7 @@
 var EventProxy  = require('eventproxy'),
 	models		= require('../models'),
 	Article		= models.Article;
-	User 		= models.User;
+	User 		= require('./user'),
 	Reply 		= models.Reply;
 
 /**
