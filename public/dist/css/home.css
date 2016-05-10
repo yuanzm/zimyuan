@@ -208,6 +208,114 @@ a {
   background: #444;
   border: .5em solid #444;
 }
+.recommend {
+  padding: 0 2em;
+}
+.recommend .icon {
+  position: relative;
+  top: 6px;
+}
+.recommend__title {
+  font-size: 1.25em;
+  margin-top: 1em;
+}
+.recommend__list {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 1em;
+  margin-bottom: 0;
+  padding: 0;
+}
+.recommend__list-item {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: .5em 0;
+}
+.recommend__list-item-title {
+  font-family: dosis, "HelveticaNeue-CondensedBold", "trebuchet ms", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  color: #444;
+}
+.recommend__list-item-mata {
+  margin: 0;
+  padding: .25em 0;
+  color: #aaa;
+  color: rgba(0, 0, 0, 0.35);
+}
+.recommend__list-item-photo {
+  float: right;
+  width: 3.5em;
+  margin: .25em 0 .25em 1em;
+  height: 3.5em;
+  verflow: hidden;
+  position: relative;
+  border-radius: .25em;
+  height: 100%;
+  max-width: 702px;
+  display: block;
+  background: #444;
+  border: .25em solid #444;
+}
+.recommend__list-item-photo img {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  vertical-align: middle;
+  display: block;
+}
+.mini-profile {
+  padding: 2em;
+  padding-bottom: 0;
+}
+.mini-profile__link-avatar {
+  width: 3em;
+  float: left;
+  margin: 0 1em 0 0;
+  vertical-align: middle;
+  border: .3em solid #444;
+}
+.mini-profile__title {
+  font-weight: bold;
+  font-size: 1.25em;
+}
+.mini-profile__job {
+  font-size: 1em;
+}
+.mini-profile__title-link {
+  color: #444;
+}
+.mini-profile__title,
+.mini-profile__job {
+  margin: 0;
+  margin-top: 0.25em
+	color:#444;
+}
+.mini-profile__desc {
+  margin-top: .5em;
+}
+.inline-list .inline-list-item {
+  display: inline-block;
+}
+.inline-list .icon {
+  vertical-align: text-bottom;
+}
+.inline-list-item-link {
+  color: #444;
+  font-size: 1em;
+  padding: .2em 0.5em;
+  border-radius: .25em;
+  display: inline-block;
+  cursor: pointer;
+}
+@media only screen and (max-width: 28em) {
+  .inline-list .icon {
+    width: 15px;
+    height: 15px;
+  }
+}
 /*
  * 全站颜色和字体等声明
  * @author: zimyuan
@@ -552,61 +660,4 @@ body:after {
     width: 15px;
     height: 15px;
   }
-}
-.recommend {
-  padding: 0 2em;
-}
-.recommend .icon {
-  position: relative;
-  top: 6px;
-}
-.recommend__title {
-  font-size: 1.25em;
-  margin-top: 1em;
-}
-.recommend__list {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  padding-bottom: 1em;
-  margin-bottom: 0;
-  padding: 0;
-}
-.recommend__list-item {
-  margin: 0;
-  position: relative;
-  overflow: hidden;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: .5em 0;
-}
-.recommend__list-item-title {
-  font-family: dosis, "HelveticaNeue-CondensedBold", "trebuchet ms", sans-serif;
-  font-weight: 700;
-  margin: 0;
-}
-.recommend__list-item-mata {
-  margin: 0;
-  padding: .25em 0;
-  color: #aaa;
-  color: rgba(0, 0, 0, 0.35);
-}
-.recommend__list-item-photo {
-  float: right;
-  width: 3.5em;
-  margin: .25em 0 .25em 1em;
-  height: 3.5em;
-  verflow: hidden;
-  position: relative;
-  border-radius: .25em;
-  height: 100%;
-  max-width: 702px;
-  display: block;
-  background: #444;
-  border: .25em solid #444;
-}
-.recommend__list-item-photo img {
-  width: 100%;
-  min-width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  vertical-align: middle;
-  display: block;
 }

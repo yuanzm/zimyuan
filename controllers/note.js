@@ -44,7 +44,7 @@ exports.addNote = function(req, res, next) {
 		if ( !book )
 			return ep.emit('add_note_error', 403, '笔记本不存在');
 
-		Note.newAndSave(title, content, author, notebook, tab, private, ep.done(function(note) {
+		Note.newAndSave(title, content, author, notebook, tab, private, book.title, ep.done(function(note) {
 			var rdata = {
 				errcode: 0,
 				message: '创建成功'

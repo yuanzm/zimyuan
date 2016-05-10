@@ -1,0 +1,24 @@
+doctype html
+html
+	head
+		//- 公共的head内部标签
+		include ../head
+		//- 公共引用的类库
+		include ../lib
+
+		link(rel="stylesheet", href="../dist/css/blog.css")
+	body(class="post-page")
+		include ../header
+		include ./postcontent 
+		include ../mini_profile
+		include ../sitemeta
+		include ../footer
+		script.
+			$(document).ready(function() {
+				var prettyprint = false;
+				$("pre code").parent().each(function() {
+					$(this).addClass('prettyprint');
+					prettyprint = true;
+				});
+				//- prettyPrint();
+			});

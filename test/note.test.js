@@ -5,17 +5,17 @@ var app     = require('../app'),
 	support = require("./support/support.js");
 
 describe('note/test', function() {
-    var title   = 'test' + Math.random(100);
-    var content = 'test';
+    var title   = '测试笔记' + Math.random(100);
+    var content = '测试笔记内容';
     var private = false;
-    var tab = 'life';
+    var tab     = 'life';
 
     before(function(done) {
         done = pedding(done, 1);
         support.ready(done);
     });
 
-    describe('notebook create', function() {
+    describe('note create', function() {
         it('should not create an note when title is empty', function(done) {
             request.post('/note/create')
             .set('Cookie', support.normalUserCookie)

@@ -34,14 +34,15 @@ var createNotebook = exports.createNotebook =  function(user, callback) {
 }
 
 var createNote = exports.createNote = function(user, notebook, callback) {
-	var title = "test" + Math.random(100);
-	var contetn = 'test';
-	var author = user._id;
-	var notebook = notebook._id;
-	var tab = 'life';
-	var private = false;
+	var title         = "test" + Math.random(100);
+	var content       = 'test';
+	var author        = user._id;
+	var book          = notebook._id;
+	var notebook_name = notebook.title;
+	var tab 		  = 'life';
+	var private       = false;
 
-	Note.newAndSave(title, contetn, author, notebook, tab, private, callback);
+	Note.newAndSave(title, content, author, book, tab, private, notebook_name, callback);
 }
 
 var createArticle = exports.createArticle = function(user, type, callback) {
@@ -84,7 +85,10 @@ ep.all('user', 'user2', function(user, user2) {
 	ep.on('notebook', function(notebook) {
 		exports.notebook = notebook;
 
-		createNote(user, notebook, ep.done('note'));		
+		createNote(user, notebook, ep.done(function(note1) {
+			exports.note1 = note1;
+			createNote(user, notebook, ep.done('note'));		
+		}));		
 	});
 });
 

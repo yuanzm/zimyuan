@@ -14,6 +14,7 @@ var NoteSchema = new Schema({
 
 	author      : {type: ObjectId},					// 作者
 	notebook	: {type: ObjectId},					// 所归属的笔记本
+	notebook_name: {type: String},					// 所在笔记本的名字
 
 	reply_count : {type: Number, default: 0},		// 回复数量
 	visit_count : {type: Number, default: 0},		// 阅读数量
@@ -22,10 +23,9 @@ var NoteSchema = new Schema({
 	update_at   : {type: Date, default: Date.now},	// 更新时间
 
 	tab         : {type: String},					// 标签
-	deleted     : {type: Boolean, default: false},	// 文章是否被删除	
+	deleted     : {type: Boolean, default: 0},		// 文章是否被删除	
 
-	private     : {type: Boolean, default: false},	// 是否为私密内容
-
+	private     : {type: Boolean, default: 0},		// 是否为私密内容
 });
 
 NoteSchema.plugin(BaseModel);

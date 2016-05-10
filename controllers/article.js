@@ -6,6 +6,42 @@ var validator 	   = require('validator'),
 	tools          = require('../common/tools');
 	authMiddleWare = require('../middlewares/auth');
 
+exports.blogIndex = function(req, res, next) {
+	var ep = new EventProxy();
+	ep.fail(next);
+
+	Article.getLastArticles('blog', 10, ep.done(function(blogs) {
+		res.render('blogs/blogs', {
+			blogs: blogs
+		});	
+	}));
+}
+
+
+var fs = require('fs');
+var marked = require('marked');
+
+exports.blog = function(req, res, next) {
+	fs.readFile('E:/Github/zimyuan/controllers/md.txt',{encoding:'utf8'}, function (err, data) {
+	  	if (err) throw err;
+	  	// console.log(marked(data));
+		res.render("blog/blog", {
+			data: data,
+			marked: marked
+		});
+	});
+
+	var ep = new EventProxy();
+	ep.fail(next);
+
+
+	// Article.getLastArticles('blog', 10, ep.done(function(blogs) {
+	// 	res.render('blogs/blogs', {
+	// 		blogs: blogs
+	// 	});	
+	// }));
+}
+
 /**
  * @desc: 创建一篇文章
  */

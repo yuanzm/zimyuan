@@ -559,111 +559,15 @@ body:after {
   position: relative;
   top: 7px;
 }
-.profile {
-  padding: 2em 2em 0 2em;
+.blog {
+  padding: 1em 2em 0 2em;
 }
-.profile__blocks {
-  padding: 0 2em;
+.blog__title {
+  margin-bottom: 0;
+  font-size: 1.75em;
+  word-wrap: break-word;
+  line-height: 1;
 }
-.profile__photo {
-  position: relative;
-  margin: 0 0 2em;
-  border-width: .5em;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -o-box-sizing: border-box;
-  box-sizing: border-box;
-  overflow: hidden;
-  cursor: pointer;
-}
-.profile__photo:hover .profile__photo-desc {
-  bottom: 1em;
-}
-.profile__photo-img {
-  width: 100%;
-  min-width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  display: block;
-  height: 100%;
-}
-.profile__photo-desc {
-  font-size: .75em;
-  position: absolute;
-  bottom: -5em;
-  left: 1em;
-  margin-right: 1em;
-  padding: .5em 1em;
-  border-radius: .25em;
-  background: rgba(0, 0, 0, 0.85);
-  color: #eee;
-  -webkit-transition: bottom 0.5s ease-in-out;
-  -moz-transition: bottom 0.5s ease-in-out;
-  -o-transition: bottom 0.5s ease-in-out;
-  transition: bottom 0.5s ease-in-out;
-}
-.profile__info-title {
-  margin: .5em 0;
-}
-.profile__info-detail {
+.blog__intro {
   text-indent: 2em;
-  margin: 0;
-}
-.profile__detail {
-  overflow: hidden;
-}
-.profile__detail-half {
-  width: 50%;
-  float: left;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -o-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.profile__detail-right .profile__detail-block {
-  padding-left: 2em;
-}
-.profile__detail-block-title .icon {
-  vertical-align: text-bottom;
-}
-@media only screen and (min-width: 28em) {
-  .profile__info-detail {
-    font-size: 1em;
-  }
-  .profile__detail-left {
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
-  }
-  .profile__detail-left .profile__detail-block {
-    padding-right: 2em;
-  }
-  .profile {
-    font-size: .75em;
-  }
-}
-.profile__detail-block-title {
-  margin: .25em 0;
-  margin-top: 1em;
-  text-rendering: optimizeLegibility;
-}
-.profile__detail-block-item {
-  list-style: disc inside none;
-}
-@media only screen and (max-width: 28em) {
-  .profile__info-detail {
-    font-size: 1.1em;
-  }
-  .profile__detail-half {
-    width: 100%;
-  }
-  .profile__detail-right .profile__detail-block {
-    padding-left: 0;
-  }
-  .profile__detail-block-title {
-    font-size: 1.25em;
-  }
-  .profile__detail-block-title .icon {
-    width: 1.25em;
-    height: 1.25em;
-    vertical-align: top;
-  }
 }

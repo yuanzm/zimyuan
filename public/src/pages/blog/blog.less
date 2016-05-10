@@ -1,0 +1,115 @@
+@import "../../common/index.less";
+
+// 导航栏针对文章页面进行样式适配
+// 大屏幕
+@media only screen and (min-width: 68.5em) {
+	.post-page {
+		padding: 0 0 0 15em;
+		.header {
+		    position: fixed;
+		    width: 15em;
+		    margin-left: -15em;
+		    padding-top: 0;
+		    padding-right: 0;
+		    top: 2.5em;
+		    z-index: 1;
+		    .header__icon-btn {
+		    	margin-right: .25em;
+		    }
+		    .header__nav-trigger {
+		    	right: 4.25em;
+		    }
+		}
+
+		// 导航栏
+		.sitemeta {
+		    top: 6em;
+	    	z-index: 1;
+	        position: fixed;
+		    width: 15em;
+		    margin-left: -15em;
+		}
+		#nav {
+			position: absolute;
+		    top: -500px;
+		}
+		#nav:target {
+		    position: absolute;
+		    top: -8em;
+		    font-size: .75em;
+		}
+
+		// 小型个人主页
+		.mini-profile {
+			padding: 2.75em;
+			padding-top: 1em;
+			font-size: .75em;
+			cursor: pointer;
+
+	        opacity: .3;
+		    -webkit-transition: opacity .25s ease-in-out;
+		    -moz-transition: opacity .25s ease-in-out;
+		    -o-transition: opacity .25s ease-in-out;
+		    transition: opacity .25s ease-in-out;
+		    -webkit-backface-visibility: hidden;
+
+		    .inline-list-item-link {
+		    	padding: 0;
+		    	padding-right: .5em;
+		    	font-size: .75em;
+		    	.icon {
+		    		width: 1.5em;
+		    		vertical-align: bottom;
+		    	}
+		    }
+		}
+		.mini-profile:hover {
+			opacity: 1;
+		}
+	}
+}
+
+.blog-post {
+	padding: 2em;
+	padding-top: 1em;
+	overflow: hidden;
+}
+
+pre {
+	width: 150%;
+	overflow-x: scroll;
+}
+
+.blog-post__header {
+	overflow: hidden;
+}
+
+.blog-post__header-title {
+	margin: 0;
+}
+
+.blog-post__header-list {
+	float: left;
+}
+
+.blog-post__header-tag-item {
+	display: inline-block;
+	margin-right: 5px;
+	background-color: #fff;
+	padding: 0 5px;
+}
+
+.blog-post__header-meta-list {
+	margin-top: .5em;
+	.blog-post__header-meta-item {
+		display: inline-block;
+		margin-right: 10px;
+	}
+
+	.blog-post__header-meta-author {
+		font-weight: 700;
+	}
+	.blog-post__header-meta-author-link {
+		color: #444;
+	}
+}

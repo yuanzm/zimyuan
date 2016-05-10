@@ -20,6 +20,7 @@ exports.newAndSave = function(type, title, content, author, tab, callback) {
 	article.title 	= title;
 	article.content = content;
 	article.author 	= author;
+	article.tab     = tab;
 
 	article.save(callback);
 };
@@ -100,5 +101,5 @@ exports.getFullArticle = function(id, callback) {
 };
 
 exports.getLastArticles = function(type, count, callback) {
-	Article.find({'type': type}).limit(count).sort({create_at: -1}).exec(callback);
+	Article.find({'type': type, deleted: false}).limit(count).sort({create_at: -1}).exec(callback);
 }

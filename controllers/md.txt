@@ -1,0 +1,225 @@
+## 前言
+最近在写一课程的Project,用Node写了一个实时聊天小应用，其中就用到了单元测试。在写Node单元测试的时候，一方面感受到了单元测试的重要性，另一方面感受到了Node单元测试的不够成熟，尚未有成熟的理论体系，所以想写篇博客探讨一下Node里面单元测试的方法。示例代码部署在Github上面，地址是：https://github.com/blogdemos/node-test-demo，欢迎fork~
+## 单元测试简介
+根据维基百科的定义：
+> 在计算机编程中，单元测试（又称为模块测试, Unit Testing）是针对程序模块（软件设计的最小单位）来进行正确性检验的测试工作。程序单元是应用的最小可测试部件。在过程化编程中，一个单元就是单个程序、函数、过程等；对于面向对象编程，最小单元就是方法，包括基类（超类）、抽象类、或者派生类（子类）中的方法。
+
+JavaScript是面向对象编程的，很多时候我们都需要将一个功能掉抽象成一个组件，方便团队其他开发者调用，那么我们就理应保证我们给出的组件是正确可用的。在很长的一段时间里，前端都忽略了单元测试，或者说对于前端这种GUI编程来说，单元测试确实比较麻烦。随着Node的异军突起，针对JavaScript的单元测试框架如雨后春笋，前端也逐渐玩起了单元测试。
+
+单元测试的重要性是不言而喻的，经常存在的一个误区是：
+
+- 单元测试不是测试人员的事情么？
+- 自己为什么要测试自己的代码？
+- 单元测试的成本这么高对于产品开发有意义么？
+- 我这么牛我不需要单元测试！
+
+上面的几点也是我之前怀疑过的，但是觉得现在每一点都是不容置疑的。首先，认为测试是测试人员的事情是不负责的，测试人员更多的应该是针对整体功能，而每一位工程师应该保证自己代码的准确性；其次自己测试自己的代码更多的时候是为了提高效率。如果我写好了一个接口，没有经过测试就直接交给了别人，那么出错之后就需要接着调试，其中所花费的沟通成本会大大大于编码成本，这也顺带解决了第三个疑问；最后，在Github上面所有star过万的repo都应该有自己的测试，我相信这些repo的作者比大部分人都牛，他们都需要不断测试，我们没有理由不去测试。
+
+### 单元测试的分类
+单元测试根据主流的分类可以分成两类，分别是`BDD`和`TDD`
+
+#### TDD
+TDD的英文全称是Test-Driven Development，即测试驱动开发。测试驱动开发的流程是
+- 开发人员写了一些测试代码
+- 开发人员跑了这些测试用例，然后毫无疑问的这些测试用例失败了因为测试中提到的类和方法并没有实现
+- 开发人员开始实现测试用例里面提到的方法
+- 如果开发者写好了某个功能点，他会欣喜地发现之前的相对应的测试用例通过了
+- 开发者人员可以重构代码，并添加注释，完成后期工作
+这个流程如下图：
+![图片描述][1]
+
+#### BDD
+BDD的英文全称是Behavior-Driven Development，即行为驱动开发。
+BDD与TDD的主要区别是在写测试案例的时候的措辞，BDD的测试案例更像是一份说明书，在详细描述软件的每一个功能。个人比较喜欢BDD，后续的Demo也是BDD形式的。
+
+关于BDD和TDD的差别可以看看这篇文章： [The Difference Between TDD and BDD][2]
+## mocha框架简介
+说到JavaScript的测试框架，就不得不提起大名鼎鼎的TJ Holowaychuk写的Mocha了。
+### 简介
+> Mocha是一个基于node.js和浏览器的集合各种特性的Javascript测试框架，并且可以让异步测试也变的简单和有趣。Mocha的测试是连续的，在正确的测试条件中遇到未捕获的异常时，会给出灵活且准确的报告。
+
+### 安装使用
+
+```
+npm install -g mocha
+```
+
+```
+$ npm install -g mocha
+$ mkdir test
+$ $EDITOR test/test.js
+
+var assert = require("assert");
+describe('Array', function() {
+    describe('#indexOf()', function() {
+        it('should return -1 when the value is not present', function() {
+            assert.equal(-1, [1,2,3].indexOf(5));
+            assert.equal(-1, [1,2,3].indexOf(0));
+        });
+    });
+});
+
+$  mocha
+
+.
+
+✔ 1 test complete (1ms)
+```
+## 辅助工具
+为了顺利进行单元测试，通常都是组合几种工具来使用的，这里介绍常用的几种。
+### should.js
+should 是一个表述性、可读性很强的测试无关的“断言”库。它是BDD风格的，用一个单例的不可枚举的属性访问器扩展了Object的prototype，允许你表述对象应该展示的行为。
+node本身有自己的断言模块，但是should所具有的表述性和可读性让开发者没有理由拒绝这么棒的工具。
+常用的断言库还有[Chai][3]和[expectjs][4]，这里不再多说
+### supertest
+在用Node做Web开发的时候，模拟HTTP请求时必不可少的，如果都需要用浏览器来实现请求，那就太Low了！
+supertest是一个非常棒的适用于node的模拟HTTP请求的库，有点拗口，但是看看dmeo就会米桑她优雅的链式写法
+
+```
+var request = require('supertest')
+  , express = require('express');
+
+var app = express();
+
+app.get('/user', function(req, res){
+  res.send(200, { name: 'tobi' });
+});
+
+request(app)
+  .get('/user')
+  .expect('Content-Type', /json/)
+  .expect('Content-Length', '20')
+  .expect(200)
+  .end(function(err, res){
+    if (err) throw err;
+  });
+```
+## 代码示例
+为了能够展示测试的核心点，又能具有实战性，我们写一个非常简单的demo，这个demo有两个主要功能-`注册登录`和`发布简单的话题`
+示例代码托管在Github上面，地址是：https://github.com/blogdemos/node-test-demo.git
+### 简介
+示例代码采用nodejs的express框架写了一个非常简单的只有后台的项目。为了demo应有的简介特性，省去了很多应当有的逻辑，力求展示测试过程中应当注意的点。
+
+### 目录介绍
+    .
+    ├── controllers                    // 控制层
+    |   ├── site.js                    // 注册登录控制
+    |   └── topic.js                   // 话题控制
+    ├── models                         // 数据模型
+    |   ├── index.js                   // 出口文件
+    |   ├── topic.js                   // 话题模型
+    |   └── user.js                    // 用户模型
+    ├── proxy                          // 数据控制层
+    |   ├── topic.js                   // 话题数据控制
+    |   └── user.js                    // 用户数据控制
+    ├── tests                          // 单元测试
+    |   ├── support/support.js         // 模拟数据
+    |   ├── user.test.js               // 注册登录控制测试
+    |   └── topic.test.js              // 话题控制测试
+    ├── app.js                         // 项目主文件
+    ├── consig.js                      // 项目配置文件
+    ├── package.json                   // 包文件
+    └── router.js                      // 路由配置
+#### 要点
+##### 1. 异步操作的测试
+异步无阻塞I/O是Node的灵魂所在，因为用node开发的应用程序处处体现着异步的用法。在编写测试案例的时候，我们的测试代码怎么才能知道测试结果出来了呢？
+
+强大的Mocha自然会考虑到这一点。只需要在你的测试结束时调用回调函数即可。通过给it()添加回调函数（通常命名为done）可以告知Mocha需要等待异步测试结束。这里直接调用官网的例子：
+
+```
+describe('User', function() {
+    describe('#save()', function() {
+        it('should save without error', function(done) {
+            var user = new User('Luna');
+            user.save(done);
+        });
+    });
+});
+```
+##### 2. 具备正反测试用例
+测试的一个重要环节就是要提高测试覆盖率。话句话说，你在写代码的时候考虑到的异常情况，在写测试案例的时候也应该考虑在内，也就是所谓的正反测试案例。
+举个例子
+
+```
+    describe('sign up', function() {
+        it('should not sign up an user when loginname is empty', function(done) {
+            request.post('/signup')
+            .send({
+                loginname: '',
+                password: password
+            })
+            .expect(200, function(err, res) {
+                should.not.exist(err);
+                res.text.should.containEql('用户名或密码不能为空');
+                done();
+            });
+        });
+        it('should not sign up an user when it is exist', function(done) {
+            request.post('/signup')
+            .send({
+                loginname: loginname,
+                password: password
+            })
+            .expect(200, function(err, res) {
+                should.not.exist(err);
+                res.text.should.containEql('用户已经存在');
+                done();
+            });
+        });
+    });
+```
+在写注册登录的测试案例的时候，我们除了希望看到用户名和密码都正确填写的情况下得到测试通过的结果，还希望看到我们故意不输入用户名的时候也能得到正确的"错误提示"。
+
+##### 3. 需要cookie和session的测试案例
+在web开发中，Cookie有着非常重要的作用。因为HTTP是无状态的，所以需要用cookie来辅助实现用户认证。我们先来简单介绍一下cookie的工作机制。
+![图片描述][5]
+
+如果所示，如果通过cookie和session协同识别一个用户需要两次请求，第一次请求的时候，服务器并不认识你，但是他给你标记了一个他独有的id，等到第二次请求的时候，浏览器自动给你带上了之前的标签，这样服务器就知道你之前请求过了。
+
+那么问题来了，如果我们写测试案例的时候，需要两次请求来实现的话，会非常麻烦，测试案例也会很冗长。怎么才能一次请求就能使用cookie和session呢？
+
+这时候express的中间件的好处就体现了。
+首先，我们在用`supertest`进行HTTP请求的时候，可以通过下面的形式设置cookie：
+
+```
+set('Cookie', cookieValue)
+```
+然后，我们写一个非常简单的中间件：
+
+```
+app.use(function(req, res, next) {
+	if (config.debug && req.cookies['mock_user']) {
+		var mockUser = JSON.parse(req.cookies['mock_user']);
+        req.session.user = new UserModel(mockUser);
+        return next();
+	}
+	next();
+});
+```
+原理就是先判断当前是否为开发环境，通过config来设置，通常在开发阶段这个值设置为true。其次判断是否具有键为`mock_user`的cookie键值对，如果存在，设置session里面的user值，这样，只要一次请求我们就能实现用户标识。
+最后要解决的问题就是怎么设置字段键为`mock_user`的cookie了，具体的用法可参照test目录里面的`support/support.js`,这里不多说。
+
+##### 4. 测试覆盖率
+为了检验自己的测试用例是否全面，我们需要知道自己的测试覆盖率是多少。这里介绍一个与mocha非常有好的istanbul。由于本人是在windows下面写的测试代码，就不写Makefile了，比较蛋疼。之所以强调Windows是因为在Windows运行istanbul的时候会会出现问题，具体见http://stackoverflow.com/questions/27084392/code-coverage-for-mocha-in-windows-7
+因此在Windows运行的时候需要像下面这样运行：
+
+```
+./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha*
+```
+
+## 结语
+最后也不说什么了，附上本地运行示例代码的测试结果和测试覆盖率结果：
+![图片描述][6]
+![图片描述][7]
+## 参考资料
+- [BDD VS TDD][8]
+
+
+  [1]: /img/bVmpE6
+  [2]: https://joshldavis.com/2013/05/27/difference-between-tdd-and-bdd/
+  [3]: http://chaijs.com/
+  [4]: https://github.com/Automattic/expect.js
+  [5]: /img/bVmp95
+  [6]: /img/bVmqaL
+  [7]: /img/bVmqaM
+  [8]: https://joshldavis.com/2013/05/27/difference-between-tdd-and-bdd/

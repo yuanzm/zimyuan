@@ -70,6 +70,8 @@
 						'dist/css/home.css': 'src/pages/home/home.less',
 						'dist/css/profile.css': 'src/pages/profile/profile.less',
 						'dist/css/notes.css': 'src/pages/notes/notes.less',
+						'dist/css/blogs.css': 'src/pages/blogs/blogs.less',
+						'dist/css/blog.css': 'src/pages/blog/blog.less',
 				  	}
 				}
 		  	},

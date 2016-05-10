@@ -13,8 +13,8 @@ exports.index = function(req, res, next) {
 	var ep = new EventProxy();
 	ep.fail(next);
 	ep.all('user', 'article', 'photo', 'note', 'profile', function(user, article, photo, note, profile) {
-		console.log(note);
-
+		console.log(article);
+		
 		res.render('home/home', {
 			user    : user,
 			article : article,
@@ -30,7 +30,7 @@ exports.index = function(req, res, next) {
 		Profile.getProfileByUserId(user._id, ep.done('profile'));
 	});
 	// 查询最新的两篇文章
-	Article.getLastArticles('article', 2, ep.done('article'));
+	Article.getLastArticles('blog', 2, ep.done('article'));
 	// 查询最新的两个相册
 	Article.getLastArticles('photo', 2, ep.done('photo'));
 	// 查询最新的笔记

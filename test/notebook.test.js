@@ -117,17 +117,17 @@ describe('notebook/test', function() {
                 done();
             });
         });
-        it('should delete an notebook', function(done) {
-            request.post('/notebook/delete')
-            .set('Cookie', support.normalUserCookie)
-            .send({
-                nid     : support.notebook._id
-            })
-            .expect(200, function(err, res) {
-                should.not.exist(err);
-                res.text.should.containEql('删除成功');
-                done();
-            });
-        });
+        // it('should delete an notebook', function(done) {
+        //     request.post('/notebook/delete')
+        //     .set('Cookie', support.normalUserCookie)
+        //     .send({
+        //         nid     : support.notebook._id
+        //     })
+        //     .expect(200, function(err, res) {
+        //         should.not.exist(err);
+        //         res.text.should.containEql('删除成功');
+        //         done();
+        //     });
+        // });
     });
 });

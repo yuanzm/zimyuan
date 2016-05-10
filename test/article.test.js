@@ -5,6 +5,7 @@ var app     = require('../app'),
 	support = require("./support/support.js");
 
 describe('article/test', function() {
+    var type    = 'blog';
     var title   = '测试文章' + Math.random(1);
     var content = '测试内容';
     var private = false;
@@ -20,6 +21,7 @@ describe('article/test', function() {
             request.post('/article/create')
             .set('Cookie', support.normalUserCookie)
             .send({
+                type     : type,
                 title    : '',
                 content  : content,
                 private  : private,
@@ -35,6 +37,7 @@ describe('article/test', function() {
             request.post('/article/create')
             .set('Cookie', support.invalidUser)
             .send({
+                type     : type,
                 title    : title,
                 content  : content,
                 private  : private,
@@ -50,6 +53,7 @@ describe('article/test', function() {
             request.post('/article/create')
             .set('Cookie', support.normalUserCookie)
             .send({
+                type     : type,
                 title    : title,
                 content  : content,
                 private  : private,
