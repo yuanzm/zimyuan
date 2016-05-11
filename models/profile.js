@@ -13,7 +13,7 @@ var ProfileSchema = new Schema({
 	hobby      : {type: Array},		// 爱好
 	hate	   : {type: Array},		// 讨厌
 	thinking   : {type: Array},		// 思考
-
+	education  : {type: Array}		// 教育情况
 });
 
 ProfileSchema.plugin(BaseModel);

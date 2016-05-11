@@ -50,6 +50,11 @@ function createProfile(userid) {
 		'性能'
 	];
 
+	var education = [
+		'2012年毕业于梅县东山中学',
+		'2016年毕业于中山大学'
+	];
+
 	Profile.getProfileByUserId(userid, function(err, profile) {
 		if ( err )
 			return console.log(err);		
@@ -57,7 +62,7 @@ function createProfile(userid) {
 		if ( profile )
 			return;
 
-		Profile.newAndSave(userid, avatar, info, experience, hobby, hate, thinking, function(err, profile) {
+		Profile.newAndSave(userid, avatar, info, experience, hobby, hate, thinking, education, function(err, profile) {
 			if ( err )
 				return console.log(err);			
 

@@ -48,12 +48,13 @@ exports.addProfile = function(req, res, next) {
 	var experience = req.body.experience;   		
 	var hobby      = req.body.hobby;
 	var hate       = req.body.hate
-	var thinking   = req.body.thinking;	
+	var thinking   = req.body.thinking;
+	var education  = req.body.education;
 
 	if ( !avatar || !profile )
 		return ep.emit('update_profile_error', 422, '请输入头像和简介');
 
-	if ( [experience, hobby, hate, thinking].some(function(item) {return !Array.isArray(item)}) )
+	if ( [experience, hobby, hate, thinking, education].some(function(item) {return !Array.isArray(item)}) )
 		return ep.emit('update_profile_error', 422, 'experience,hobby,hate,thinking必须是数组');
 
 	User.getUserById(userid, ep.done(function(user) {
@@ -71,7 +72,7 @@ exports.addProfile = function(req, res, next) {
 			if ( profile )
 				return ep.emit('update_profile_error', 422, '该用户的profile已经存在');
 
-			Profile.newAndSave(userid, avatar, profile, experience, hobby, hate, thinking, ep.done(function() {
+			Profile.newAndSave(userid, avatar, profile, experience, hobby, hate, thinking, education, ep.done(function() {
 				profile.save(ep.done(function() {
 					var rdata = {
 						errcode: 0,

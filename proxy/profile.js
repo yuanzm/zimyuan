@@ -13,7 +13,7 @@ var EventProxy  = require('eventproxy'),
  * @param {String} thinking: 思考
  * @param {Function} callback: 查询回调函数
  */
-exports.newAndSave = function(user, avatar, info, experience, hobby, hate, thinking, callback) {
+exports.newAndSave = function(user, avatar, info, experience, hobby, hate, thinking, education, callback) {
 	var profile 	   = new Profile();
 
 	profile.user       = user;
@@ -23,6 +23,7 @@ exports.newAndSave = function(user, avatar, info, experience, hobby, hate, think
 	profile.hobby      = hobby;
 	profile.hate       = hate;
 	profile.thinking   = thinking;
+	profile.education  = education;
 
 	profile.save(callback);
 };

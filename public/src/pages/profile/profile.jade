@@ -24,19 +24,26 @@ block pagemain
 						for item in profile.experience
 							li(class="profile__detail-block-item")=item
 				div(class="profile__detail-block")
-					h4(class="profile__detail-block-title") 
-						span(class="icon icons8-Hate")
-						|&nbsp极为讨厌...
+					h4(class="profile__detail-block-title")
+						span(class="icon icons8-Life")
+						|&nbsp教育情况...
 					ul(class="profile__detail-block-list")
-						for item in profile.hate
+						for item in profile.education
 							li(class="profile__detail-block-item")=item
-			div(class="profile__detail-right profile__detail-half")
 				div(class="profile__detail-block")
 					h4(class="profile__detail-block-title")
 						span(class="icon icons8-Hobby")
 						|&nbsp生活爱好...
 					ul(class="profile__detail-block-list")
 						for item in profile.hobby
+							li(class="profile__detail-block-item")=item
+			div(class="profile__detail-right profile__detail-half")
+				div(class="profile__detail-block")
+					h4(class="profile__detail-block-title") 
+						span(class="icon icons8-Hate")
+						|&nbsp极为讨厌...
+					ul(class="profile__detail-block-list")
+						for item in profile.hate
 							li(class="profile__detail-block-item")=item
 				div(class="profile__detail-block")
 					h4(class="profile__detail-block-title")
