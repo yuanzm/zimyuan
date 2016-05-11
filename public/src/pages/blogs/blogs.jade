@@ -1,7 +1,7 @@
 extends ../layout.jade
 
 block css
-	link(rel="stylesheet", href="../dist/css/blogs.css")
+	link(rel="stylesheet", href="../dist/css/blogs.css?v=3")
 
 block pagemain
 	header(class="blog")
@@ -14,7 +14,7 @@ block pagemain
 		section(class="recommend")
 			h2(class="recommend__title")
 				span(class="icon icons8-Document") 
-				&nbsp全部文章
+				|&nbsp全部文章
 			ul(class="recommend__list")
 				each blog in blogs
 					li(class="recommend__list-item")
@@ -35,12 +35,12 @@ block pagemain
 			li(class="inline-list-item")
 				a(href="https://www.github.com/yuanzm",class="inline-list-item-link")
 					span(class="icon icons8-Github_Black")
-					&nbspGithub
+					|&nbspGithub
 			li(class="inline-list-item")
 				a(href="mailto:1229084233@qq.com",class="inline-list-item-link")
 					span(class="icon icons8-Email")
-					&nbspEmail
+					|&nbspEmail
 			li(class="inline-list-item")
 				a(href="/profile",class="inline-list-item-link")
 					span(class="icon icons8-Profile_black")
-					&nbspProfile
+					|&nbspProfile

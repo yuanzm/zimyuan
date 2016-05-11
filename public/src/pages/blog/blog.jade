@@ -10,11 +10,13 @@ html
 		script(type="text/javascript", src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.js")
 		script(type="text/javascript", src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert")
 	body(class="post-page")
-		include ../header
-		include ./postcontent 
-		include ../mini_profile
-		include ../sitemeta
-		include ../footer
+		div(class="container")
+			include ../header
+			div(class="main")
+				include ./postcontent 
+				include ../mini_profile
+				include ../sitemeta
+			include ../footer
 		script.
 			$(document).ready(function() {
 				var prettyprint = false;
@@ -22,5 +24,4 @@ html
 					$(this).addClass('prettyprint');
 					prettyprint = true;
 				});
-				//- prettyPrint();
 			});

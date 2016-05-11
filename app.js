@@ -32,8 +32,8 @@ if ( !config.debug )
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // 渲染时间
-if (config.debug)
-    app.use(renderMiddleware.render);
+// if (config.debug)
+//     app.use(renderMiddleware.render);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());

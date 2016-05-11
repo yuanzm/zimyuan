@@ -9,9 +9,11 @@ html
 		block css
 
 	body
-		include header
-		
-		block pagemain
+		div(class="container")
+			include header
+				
+			div(class="main")
+				block pagemain
+				include sitemeta
 
-		include sitemeta
-		include footer
+			include footer

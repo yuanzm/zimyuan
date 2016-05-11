@@ -61,7 +61,6 @@ exports.signUp = function(req, res, next) {
 		if ( user.length )
 			return ep.emit('sign_up_error', 422, '登录名或者邮箱被占用');
 
-
 	    tools.bhash(password, function (err, passhash) {
 		    User.newAndSave(account, passhash, email, nick_name, function (err) {
     	    	if (err)
@@ -105,6 +104,7 @@ exports.login = function(req, res, next){
     	var passhash = user.password;
 
     	tools.bcompare(password, passhash, function (err, bool) {
+    		console.log(password, passhash);
     		if ( !bool )
     			return ep.emit('login_error', 422, '用户密码错误');
 

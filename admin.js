@@ -1,5 +1,7 @@
 var User    = require('./proxy/user');
 var Profile = require('./proxy/profile'); 
+var tools   = require('./common/tools');
+
 
 var account   = 'zimyuan';
 var password  = 'boss20100413wan';
@@ -14,13 +16,16 @@ function createAdminUser(callback) {
 		if ( user )
 			return callback(user);
 
-		User.newAndSave(account, password, email, nick_name, function(err, user) {
-			if ( err )
-				return console.log(err);
+		tools.bhash(password, function (err, passhash) {
+			User.newAndSave(account, passhash, email, nick_name, function(err, user) {
+				if ( err )
+					return console.log(err);
 
-			console.log('admin user is cerated successfully');
-			callback(user);
-		});
+				console.log('admin user is cerated successfully');
+				callback(user);
+			});
+		})
+
 	});
 }
 

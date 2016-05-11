@@ -1,7 +1,7 @@
 extends ../layout.jade
 
 block css
-	link(rel="stylesheet", href="../dist/css/home.css?v=1")
+	link(rel="stylesheet", href="../dist/css/home.css?v=3")
 
 block pagemain
 	div(class="front-cover")
@@ -18,11 +18,11 @@ block pagemain
 			li(class="inline-list-item")
 				a(href="https://www.github.com/yuanzm",class="inline-list-item-link")
 					span(class="icon icons8-Github")
-					&nbspFollow
+					|&nbspFollow
 			li(class="inline-list-item")
 				a(href="/profile",class="inline-list-item-link")
 					span(class="icon icons8-User")
-					&nbspProfile
+					|&nbspProfile
 
 	div(class="zimyuan__hr")
 
@@ -30,7 +30,7 @@ block pagemain
 		section(class="recommend")
 			h2(class="recommend__title")
 				span(class="icon icons8-Document") 
-				&nbsp热门文章
+				|&nbsp热门文章
 			ul(class="recommend__list")
 				each one in article
 					li(class="recommend__list-item")
@@ -42,7 +42,7 @@ block pagemain
 		section(class="recommend")
 			h2(class="recommend__title")
 				span(class="icon icons8-Photo")
-				&nbsp精选照片
+				|&nbsp精选照片
 			ul(class="recommend__list")
 				each one in photo
 					li(class="recommend__list-item")
@@ -55,7 +55,7 @@ block pagemain
 		section(class="recommend")
 			h2(class="recommend__title")
 				span(class="icon icons8-Note")
-				&nbsp最新笔记
+				|&nbsp最新笔记
 			ul(class="recommend__list")
 				each one in note
 					li(class="recommend__list-item")

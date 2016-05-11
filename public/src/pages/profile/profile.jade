@@ -1,7 +1,7 @@
 extends ../layout.jade
 
 block css
-	link(rel="stylesheet", href="../dist/css/profile.css?v=23")
+	link(rel="stylesheet", href="../dist/css/profile.css?v=5")
 
 block pagemain
 	section(class="profile")
@@ -19,14 +19,14 @@ block pagemain
 				div(class="profile__detail-block")
 					h4(class="profile__detail-block-title")
 						span(class="icon icons8-Life")
-						&nbsp人生轨迹...
+						|&nbsp人生轨迹...
 					ul(class="profile__detail-block-list")
 						for item in profile.experience
 							li(class="profile__detail-block-item")=item
 				div(class="profile__detail-block")
 					h4(class="profile__detail-block-title") 
 						span(class="icon icons8-Hate")
-						&nbsp极为讨厌...
+						|&nbsp极为讨厌...
 					ul(class="profile__detail-block-list")
 						for item in profile.hate
 							li(class="profile__detail-block-item")=item
@@ -34,14 +34,14 @@ block pagemain
 				div(class="profile__detail-block")
 					h4(class="profile__detail-block-title")
 						span(class="icon icons8-Hobby")
-						&nbsp生活爱好...
+						|&nbsp生活爱好...
 					ul(class="profile__detail-block-list")
 						for item in profile.hobby
 							li(class="profile__detail-block-item")=item
 				div(class="profile__detail-block")
 					h4(class="profile__detail-block-title")
 						span(class="icon icons8-Thinking")
-						&nbsp胡思乱想...
+						|&nbsp胡思乱想...
 					ul(class="profile__detail-block-list")
 						for item in profile.thinking
 							li(class="profile__detail-block-item")=item

@@ -337,9 +337,6 @@ body {
   font-family: Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, WenQuanYi Micro Hei, Microsoft Yahei, sans-serif;
   color: #444;
   line-height: 1.5;
-  max-width: 732px;
-  min-width: 240px;
-  position: relative;
 }
 body:after {
   content: "27inch iMacs FTW!";
@@ -358,6 +355,9 @@ body {
   height: 100%;
 }
 .container {
+  margin: 0 auto;
+  max-width: 732px;
+  min-width: 240px;
   min-height: 100%;
   height: auto !important;
   height: 100%;
