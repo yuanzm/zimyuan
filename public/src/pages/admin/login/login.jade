@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        //- 公共的head内部标签
+        include ../../head
+        //- 公共引用的类库
+        include ../../lib
+
+        link(rel="stylesheet", href="../dist/css/login.css?v=2")
+    body(class="admin__login")
+        div(class="container")
+            include ../../header
+            div(class="main")
+                include form
+                include ../../sitemeta
+            include ../../footer

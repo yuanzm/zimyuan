@@ -3,8 +3,9 @@ var validator 	   = require('validator'),
 	config 		   = require('../config'),
 	User 		   = require('../proxy').User,
 	Article        = require('../proxy').Article,
-	tools          = require('../common/tools');
-	authMiddleWare = require('../middlewares/auth');
+	tools          = require('../common/tools'),
+	authMiddleWare = require('../middlewares/auth'),
+	marked         = require('marked');
 
 exports.blogIndex = function(req, res, next) {
 	var ep = new EventProxy();
@@ -18,28 +19,19 @@ exports.blogIndex = function(req, res, next) {
 }
 
 
-var fs = require('fs');
-var marked = require('marked');
-
 exports.blog = function(req, res, next) {
-	fs.readFile('E:/Github/zimyuan/controllers/md.txt',{encoding:'utf8'}, function (err, data) {
-	  	if (err) throw err;
-	  	// console.log(marked(data));
-		res.render("blog/blog", {
-			data: data,
-			marked: marked
-		});
-	});
-
 	var ep = new EventProxy();
 	ep.fail(next);
 
+	var id = req.params.id;
 
-	// Article.getLastArticles('blog', 10, ep.done(function(blogs) {
-	// 	res.render('blogs/blogs', {
-	// 		blogs: blogs
-	// 	});	
-	// }));
+	Article.getArticleById(id, ep.done(function(article, author) {
+		res.render('blog/blog', {
+			marked  : marked,
+			article : article,
+			author  : author,
+		});
+	}));
 }
 
 /**

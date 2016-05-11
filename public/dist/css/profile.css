@@ -231,6 +231,7 @@ a {
   overflow: hidden;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: .5em 0;
+  cursor: pointer;
 }
 .recommend__list-item-title {
   font-family: dosis, "HelveticaNeue-CondensedBold", "trebuchet ms", sans-serif;
@@ -327,7 +328,7 @@ a {
 html {
   font-size: 16px;
   color: #444;
-  background-color: #f9f4ed;
+  background-color: rgba(243, 239, 233, 0.7);
 }
 body {
   margin: 0 auto;
@@ -349,6 +350,31 @@ body:after {
   width: 2500px;
   top: 1em;
   position: fixed;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.container {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /*IE6不识别min-height*/
+  position: relative;
+}
+.main {
+  padding-bottom: 3em;
+}
+.footer {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3em;
+  /*脚部的高度*/
+  clear: both;
 }
 @media only screen and (max-width: 28em) {
   body {
@@ -402,9 +428,6 @@ body:after {
 .header__nav-trigger .icon {
   position: relative;
   top: 0.2em;
-}
-.footer {
-  padding: 1.5em;
 }
 .footer p {
   font-size: .75em;
@@ -468,9 +491,16 @@ body:after {
 #nav .icon {
   width: 25px;
   height: 25px;
-  position: relative;
-  top: .3em;
+  vertical-align: bottom;
   background-size: 100%;
+}
+#nav .sitemeta__nav-close .icon {
+  vertical-align: inherit;
+}
+@media only screen and (min-width: 34em) {
+  #nav .icon {
+    vertical-align: middle;
+  }
 }
 #nav:target {
   position: absolute;
@@ -647,6 +677,9 @@ body:after {
 }
 .profile__detail-block-item {
   list-style: disc inside none;
+  padding-left: 1.6em;
+  font-size: 1.1em;
+  margin-top: .25em;
 }
 @media only screen and (max-width: 28em) {
   .profile__info-detail {

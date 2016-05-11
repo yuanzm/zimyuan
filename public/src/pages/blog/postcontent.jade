@@ -1,15 +1,12 @@
 div(class="blog-post")
 	div(class="blog-post__header")
-		h1(class="blog-post__header-title") Nodejs单元测试小结
+		h1(class="blog-post__header-title")=article.title
 		ul(class="blog-post__header-tag-list blog-post__header-list")
-			li(class="blog-post__header-tag-item") nodejs
-			li(class="blog-post__header-tag-item") 单元测试
-			li(class="blog-post__header-tag-item") mocha
-			li(class="blog-post__header-tag-item") should
-			li(class="blog-post__header-tag-item") express
+			each tag in article.tab.split(',')
+				li(class="blog-post__header-tag-item")=tag
 		ul(class="blog-post__header-meta-list blog-post__header-list")
 			li(class="blog-post__header-meta-item blog-post__header-meta-author")
-				a(href="/profile", class="blog-post__header-meta-author-link") zimyuan
-			li(class="blog-post__header-meta-item blog-post__header-meta-time") 2天前发布
+				a(href="/profile", class="blog-post__header-meta-author-link")=author.nick_name
+			li(class="blog-post__header-meta-item blog-post__header-meta-time")=article.create_at_ago() + '发布'
 
-	div!= marked(data)
+	div!= marked(article.content)

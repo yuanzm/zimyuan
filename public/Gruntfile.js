@@ -72,6 +72,7 @@
 						'dist/css/notes.css': 'src/pages/notes/notes.less',
 						'dist/css/blogs.css': 'src/pages/blogs/blogs.less',
 						'dist/css/blog.css': 'src/pages/blog/blog.less',
+						'dist/css/login.css': 'src/pages/admin/login/login.less',
 				  	}
 				}
 		  	},

@@ -15,6 +15,7 @@ var express  = require("express"),
 	profile  = require("./controllers/profile"),
 	article  = require('./controllers/article'),	
 	config 	 = require('./config'),
+	admin    = require('./controllers/admin'),
 	// upload 	= require('./controllers/upload'),
 	router   = express.Router();
 
@@ -48,6 +49,10 @@ router.get('/blog/:id?', article.blog);					// 一篇博客
 router.post('/article/create', article.addArticle);		// 创建文章
 router.post('/article/update', article.updateArticle);	// 更新文章
 router.post('/article/delete', article.deleteArticle);	// 删除文章
+
+// 管理端
+router.get('/admin/login', admin.showLogin);			// 管理端登录页面
+
 // 上传文件
 // router.get('/uptoken', auth.userRequired, upload.uptoken);
 // router.post('/downtoken', auth.userRequired, upload.downtoken);

@@ -10,7 +10,10 @@ var express      = require('express'),
     routes       = require('./router'),
     mongoose     = require('mongoose'),
     mockCookie   = require('./middlewares/mock_cookie').mockCookie,
+    renderMiddleware = require('./middlewares/render'),
     app          = express();
+    
+require('colors');
 
 var RedisStore = require('connect-redis')(session);
 
@@ -22,9 +25,16 @@ initAdmin();
 // view engine setup
 app.set('views', path.join(__dirname, 'public/src/pages'));
 app.set('view engine', 'jade');
+if ( !config.debug )
+    app.set('view cache', true);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+// 渲染时间
+if (config.debug)
+    app.use(renderMiddleware.render);
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

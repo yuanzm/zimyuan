@@ -34,8 +34,9 @@ block pagemain
 			ul(class="recommend__list")
 				each one in article
 					li(class="recommend__list-item")
-						h3(class="recommend__list-item-title")=one.title
-						p(class="recommend__list-item-mata")=one.create_at_ago()
+						a(class="recommend__list-item-link", href="/blog/" + one._id )
+							h3(class="recommend__list-item-title")=one.title
+							p(class="recommend__list-item-mata")=one.create_at_ago()
 
 	if photo.length
 		section(class="recommend")

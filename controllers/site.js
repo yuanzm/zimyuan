@@ -12,9 +12,13 @@ var ADMINACCOUNT = 'zimyuan';
 exports.index = function(req, res, next) {
 	var ep = new EventProxy();
 	ep.fail(next);
-	ep.all('user', 'article', 'photo', 'note', 'profile', function(user, article, photo, note, profile) {
-		console.log(article);
-		
+
+	var start = new Date();
+
+	ep.all('user', 'article', 'photo', 'note', 'profile', function(user, article, photo, note, profile) {		
+		var end = new Date();
+		console.log('quert time' ,end - start, ' ms');
+
 		res.render('home/home', {
 			user    : user,
 			article : article,
