@@ -2,10 +2,11 @@ var app     = require('../app'),
 	pedding = require('pedding'),
 	request = require('supertest')(app),
 	should  = require("should"),
+    tools   = require('../common/tools'),
 	support = require("./support/support.js");
 
 describe('notebook/test', function() {
-    var title   = 'test' + Math.random(100);
+    var title   = 'test' + tools.random(1, 100);
     var private = false;
     var desc    = '生活点滴'; 
 

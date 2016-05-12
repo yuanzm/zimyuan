@@ -29,6 +29,39 @@ exports.noteIndex = function(req, res, next) {
 	Notebook.countAllBook(ep.done('book_count'));
 };
 
+exports.getOneNote = function(req, res, next) {
+	var  ep = new EventProxy();
+	ep.fail(next);
+		ep.on('get_note_error', function(errcode, message) {
+		var rdata = {
+			errcode: errcode,
+			message: message
+		};
+		res.json(rdata);
+	});
+
+	var id = req.params.id;
+
+	if ( !id )
+		return ep.emit('get_note_error', 422, '缺少参数id');
+
+	ep.all('note', 'notebook', function(note, notebook) {
+		var rdata = {
+			errcode  : 0,
+			note     : note,
+			notebook : notebook
+		};
+
+		res.json(rdata);
+	});
+
+	Note.getNoteById(id, ep.done('note'));
+
+	ep.on('note', function(note) {
+		Notebook.getBookById(note.notebook, ep.done('notebook'));
+	});
+}
+
 /**
  * @desc: 新增一篇note
  */

@@ -2,11 +2,12 @@ var app     = require('../app'),
 	pedding = require('pedding'),
 	request = require('supertest')(app),
 	should  = require("should"),
+    tools   = require('../common/tools'),
 	support = require("./support/support.js");
 
 describe('article/test', function() {
     var type    = 'blog';
-    var title   = '测试文章' + Math.random(1);
+    var title   = '测试文章' + tools.random(1, 100);
     var content = '测试内容';
     var private = false;
     var tab     = 'life';

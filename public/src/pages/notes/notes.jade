@@ -4,27 +4,43 @@ block css
 	link(rel="stylesheet", href="../dist/css/notes.css?v=5")
 
 block pagemain
-	div(class="note-home")
-		div(class="note_block")
-			div(class="note_block-line note_block-header")
-				span(class="icon icons8-Note_green")
-				|笔记
+	div(class="note_container")
+		div(class="note-home")
+			div(class="note_block")
+				div(class="note_block-line note_block-header")
+					span(class="icon icons8-Note_green")
+					|笔记
 
-				div(class="note_block-header-arrow")='全部 ' + note_count
-					span(class="icon icons8-Arrow") 
-			each note in notes
-				div(class="note_block-line")
-					p(class="note_block-line-title")=note.title
-					span(class="note_block-time")=note.create_at_ago()
+					div(class="note_block-header-arrow")='全部 ' + note_count
+						span(class="icon icons8-Arrow") 
+				each note in notes
+					div(class="note_block-line note_block-note" data-id=""+note._id)
+						p(class="note_block-line-title")=note.title
+						span(class="note_block-time ")=note.create_at_ago()
 
-		div(class="note_block")
-			div(class="note_block-line note_block-header")
-				span(class="icon icons8-Book")
-				|笔记本
-				div(class="note_block-header-arrow")='全部 ' + note_count
-					span(class="icon icons8-Arrow") 
+			div(class="note_block")
+				div(class="note_block-line note_block-header")
+					span(class="icon icons8-Book")
+					|笔记本
+					div(class="note_block-header-arrow")='全部 ' + note_count
+						span(class="icon icons8-Arrow")
 
-			each book in notebooks
-				div(class="note_block-line")
-					p(class="note_block-line-title")=book.title
-					span(class="note_block-time")=book.create_at_ago()
+				each book in notebooks
+					div(class="note_block-line note_block-book")
+						p(class="note_block-line-title")=book.title
+						span(class="note_block-time")=book.note_count + ' 条笔记-' + book.desc
+
+		div(class="note-home one-note")
+			div(class="note_block")
+				div(class="note_block-line note_block-header")
+					span(id="_j_note_title")
+					div(class="note_block-header-arrow")
+						span(class="icon icons8-Book")
+						span(id="_j_notebook_name")
+						span(class="icon icons8-Arrow") 
+				div(class="one-note__detail")
+					p(id="_j_note_content")	  
+
+block scripts
+	script(src="/lib/zepto/zepto.min.js")
+	script(src="/dist/js/pages/notes.js?v=3")

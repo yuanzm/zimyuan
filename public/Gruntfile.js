@@ -16,6 +16,7 @@
 				  		alias: {
     						'config'   : './src/common/config.js',
     						'common'   : './src/common/common.js',
+    						'databus'  : './src/common/data_bus'
     						// 'loading'  : './src/components/loading/loading.js' 
   						},
 						preBundleCB: function(b) {

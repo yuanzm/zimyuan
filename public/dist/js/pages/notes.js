@@ -1361,98 +1361,90 @@ module.exports = Loading;
 var Dialog    = require('./../../components/dialog/dialog'),
 	Loading   = require('./../../components/loading/loading');
 
-function Login() {
+var databus = require("databus");
+
+var HOMEHEIGHT     = $('.note-home').height();
+var NOTEHEIGHT     = $('.one-note').height();
+var SHOWONENOTECLS = "note_container_showonenote";
+var DELAY          = 300;
+
+// http://stackoverflow.com/questions/13823188/android-4-1-change-transition-and-webkittransition-defiend-how-to-properly-de
+function whichTransitionEvent() {
+    var t,
+    	el = document.createElement('fakeelement');
+    	transitions = {
+	        'OTransition'       :'oTransitionEnd',
+	        'MSTransition'      :'msTransitionEnd',
+	        'MozTransition'     :'transitionend',
+	        'WebkitTransition'  :'webkitTransitionEnd',
+	        'transition' 		:'transitionEnd'
+	    };
+
+    for(t in transitions){
+        if( el.style[t] !== undefined ){
+            return transitions[t];
+        }
+    }
+
+    return false;
+}
+
+function Notes() {
 	this.init();
 }
 
-Login.prototype = {
+Notes.prototype = {
 	init: function() {
-		this.initPage();
 		this.initDOM();
+		this.initPage();
 		this.bindEvent();
 	},
 
-	initPage: function() {
-		this.dialog  = new Dialog();
-		this.loading = new Loading();
+	initDOM: function() {
+		this.$noteContainer = $('.note_container');
+		this.$noteTitle     = $('#_j_note_title');
+		this.$bookName      = $('#_j_notebook_name');
+		this.$noteContent   = $('#_j_note_content');		
 	},
 
-	initDOM: function() {
-		this.$title   = $('#_j_title');
-		this.$tab     = $('#_j_tab');
-		this.$content = $('#_j_content'); 
-		this.$preview = $('#_j_preview');
-		this.$publish = $('#_j_publish');   
+	initPage: function() {
+		this.initSize();
+	},
+
+	initSize: function() {
+		this.$noteContainer.height(HOMEHEIGHT);
 	},
 
 	bindEvent: function() {
-		this.$publish.on('click', this.submit.bind(this));
-	},
+		var that = this;
 
-	checkForm: function() {
-		if ( this.$title.val() === '' ) {
-			this.dialog.alert('文章标题不能为空');
-			return false;
-		}
-
-		if ( this.$tab.val() === '' ) {
-			this.dialog.alert('文章标签不能为空');
-			return false;
-		}
-
-		if ( this.$content.val() === '' ) {
-			this.dialog.alert('文章内容不能为空');
-			return false;
-		}
-
-		return true;
-	},
-
-	getForm: function() {
-		return {
-			type    : 'blog',
-			title   : this.$title.val(),
-			tab     : this.$tab.val(),		
-			content : this.$content.val(),		
-		};
-	},
-
-	submitForm: function(data, callback) {
-		$.ajax({
-			url : "/article/create",
-			type: "POST",
-			data: data,
-			success: function(data) {
-				callback && callback(data);
-			}
+		$('.note_block-note').on('click', function() {
+			that.showOneNote.call(that, this);
 		});
 	},
 
-	submit: function() {
+	showOneNote: function(note) {
 		var that = this;
-		var check = this.checkForm();
 
-		if ( !check )
-			return;
+		var id = $(note).data('id');
+		databus.fetchOneNote(id, function(data) {
+			that.$noteTitle.text(data.note.title);
+			that.$bookName.text(data.notebook.title);
+			that.$noteContent.text(data.note.content);
 
-		this.submitForm(that.getForm.call(that), function(data) {
-			if ( data.errcode !== 0 ) {
-				that.dialog.alert(data.message || '发布出错');
-			}
-
-			else 
-				that.loading.showTips('发布成功', {
-					confirmOp: function() {
-						// window.location.href = "/admin/index";
-					}
-				});
+			that.$noteContainer.addClass(SHOWONENOTECLS);
+			setTimeout(function() {
+				that.$noteContainer.height(NOTEHEIGHT);
+			}, DELAY);
 		});
 	}
 }
 
-var login = new Login();
+$(function() {
+	var notes = new Notes();
+});
 
-},{"./../../components/dialog/dialog":8,"./../../components/loading/loading":9}],"common":[function(require,module,exports){
+},{"./../../components/dialog/dialog":8,"./../../components/loading/loading":9,"databus":"databus"}],"common":[function(require,module,exports){
 arguments[4][4][0].apply(exports,arguments)
 },{"dup":4}],"config":[function(require,module,exports){
 /*

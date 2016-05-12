@@ -189,6 +189,9 @@ a {
 .wf-inactive body {
   visibility: visible;
 }
+p {
+  margin: 0;
+}
 .mr10 {
   margin-right: 10px;
 }
@@ -623,8 +626,36 @@ body {
   position: relative;
   top: 7px;
 }
-.note-home {
+.note_container {
   padding: 1em 2em;
+  position: relative;
+}
+.note_container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.note_container_showonenote .note-home {
+  opacity: 0;
+}
+.note_container_showonenote .one-note {
+  opacity: 1;
+}
+.note-home,
+.one-note {
+  position: absolute;
+  left: 2em;
+  right: 2em;
+}
+.note-home {
+  opacity: 1;
+  transition: opacity .3s linear 0s;
+  /* Firefox 4 */
+  -moz-transition: opacity .3s linear 0s;
+  /* Safari and Chrome */
+  -webkit-transition: opacity .3s linear 0s;
+  /* Opera */
+  -o-transition: opacity .3s linear 0s;
 }
 .note_block {
   background-color: #fff;
@@ -675,4 +706,23 @@ body {
 }
 .note_block-time {
   color: #969696;
+}
+.one-note {
+  z-index: -1;
+  opacity: 0;
+  transition: opacity .1s linear .5s;
+  /* Firefox 4 */
+  -moz-transition: opacity .1s linear .5s;
+  /* Safari and Chrome */
+  -webkit-transition: opacity .1s linear .5s;
+  /* Opera */
+  -o-transition: opacity .1s linear .5s;
+}
+.one-note__detail {
+  height: auto;
+  min-height: 350px;
+  padding: 10px 0;
+}
+#nav {
+  position: absolute;
 }

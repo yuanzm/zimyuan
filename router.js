@@ -42,6 +42,8 @@ router.post('/note/create', note.addNote);		// 创建笔记本
 router.post('/note/update', note.update);		// 创建笔记本
 router.post('/note/delete', note.deleteNote);	// 创建笔记本
 
+router.get('/note/:id', note.getOneNote);	// 获取一篇笔记
+
 // 文章
 router.get('/blogs', article.blogIndex);				// 博客首页
 router.get('/blog/:id?', article.blog);					// 一篇博客

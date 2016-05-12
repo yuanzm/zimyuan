@@ -4,6 +4,7 @@ var User       = require('../../proxy/user');
 var Note  	   = require('../../proxy/note');
 var Notebook   = require('../../proxy/notebook');
 var Article    = require('../../proxy/article');
+var tools   = require('../../common/tools');
 var ep 		   = new eventproxy();
 
 ep.fail(function(err) {
@@ -27,7 +28,7 @@ var createUser = exports.createUser = function(callback) {
 }
 
 var createNotebook = exports.createNotebook =  function(user, callback) {
-	var title   = 'test' + Math.random(100);
+	var title   = 'test' + tools.random(1, 100);
 	var private = false;
 	var desc    = '日常点滴';
 
@@ -35,7 +36,7 @@ var createNotebook = exports.createNotebook =  function(user, callback) {
 }
 
 var createNote = exports.createNote = function(user, notebook, callback) {
-	var title         = "test" + Math.random(100);
+	var title         = "test" + tools.random(1, 100);
 	var content       = 'test';
 	var author        = user._id;
 	var book          = notebook._id;

@@ -54,6 +54,12 @@ function deepCopy(oldObj, newObj) {
  		}
  	}
  	return newObj;
- }
+}
 
 exports.deepCopy = deepCopy;
+
+function random (begin,end){
+    return Math.floor(Math.random()*(end-begin))+begin;
+}
+
+exports.random = random;
