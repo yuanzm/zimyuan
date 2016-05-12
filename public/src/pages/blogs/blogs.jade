@@ -20,7 +20,7 @@ block pagemain
 					li(class="recommend__list-item")
 						a(href="/blog/" + blog._id)
 							h3(class="recommend__list-item-title")=blog.title
-							p(class="recommend__list-item-mata")=blog.tab + '.' + blog.create_at_ago()
+							p(class="recommend__list-item-mata")=blog.tab + ' ' + blog.create_at_ago() + ' 阅读(' + blog.visit_count + ')'
 
 	div(class="zimyuan__hr")
 

@@ -433,6 +433,10 @@ body {
   padding: 2em 2em 0;
   overflow: hidden;
 }
+.header__title {
+  display: inline-block;
+  font-size: 1.25em;
+}
 .header__icon-btn {
   text-align: center;
   padding: 0.2em 0.5em;
@@ -461,9 +465,6 @@ body {
 .header__nav-trigger .icon {
   position: relative;
   top: 0.2em;
-}
-.footer p {
-  font-size: .75em;
 }
 .footer a {
   color: #444;

@@ -1,17 +1,4 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"common":[function(require,module,exports){
-
-},{}],"config":[function(require,module,exports){
-/*
- * @author: zimyuan
- * @last-edit-date: 2015-12-30
- */
-
-var config = {
-}
-
-module.exports = config;
-
-},{}],1:[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*!
  * artTemplate - Template Engine
  * https://github.com/aui/artTemplate
@@ -850,8 +837,8 @@ var node = require('./_node.js');
 var template = require('../dist/template-debug.js');
 module.exports = node(template);
 },{"../dist/template-debug.js":1,"./_node.js":2}],4:[function(require,module,exports){
-arguments[4]["common"][0].apply(exports,arguments)
-},{"dup":"common"}],5:[function(require,module,exports){
+
+},{}],5:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -1465,4 +1452,17 @@ Login.prototype = {
 
 var login = new Login();
 
-},{"./../../components/dialog/dialog":8,"./../../components/loading/loading":9}]},{},[10]);
+},{"./../../components/dialog/dialog":8,"./../../components/loading/loading":9}],"common":[function(require,module,exports){
+arguments[4][4][0].apply(exports,arguments)
+},{"dup":4}],"config":[function(require,module,exports){
+/*
+ * @author: zimyuan
+ * @last-edit-date: 2015-12-30
+ */
+
+var config = {
+}
+
+module.exports = config;
+
+},{}]},{},[10]);

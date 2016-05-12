@@ -25,8 +25,9 @@ exports.addNotebook = function(req, res, next) {
 	var title      = validator.trim(req.body.title);
 	var private    = req.body.private;
 	var author     = req.session.user._id; 
+	var desc  	   = req.body.desc;
 
-	var check = [title, author];
+	var check = [title, author, desc];
 
 	if ( check.some(function(item) { return item === '' }) )
 		return ep.emit('add_note_book_error', 422, '表单填写不完整');
@@ -38,7 +39,7 @@ exports.addNotebook = function(req, res, next) {
 		if ( book.length )
 			return ep.emit('add_note_book_error', 422, '笔记本已经存在');
 
-		Notebook.newAndSave(title, author, private, function(err, book) {
+		Notebook.newAndSave(title, author, private, desc, function(err, book) {
 			if ( err ) 
 				return next(err);
 
@@ -119,6 +120,7 @@ exports.update = function(req, res, next) {
 	var nid     = req.body.nid;
 	var title   = req.body.title;
 	var private = req.body.private; 
+	var desc  	   = req.body.desc;
 
 	if ( nid === '' || title === '' )
 		return ep.emit('update_note_book_error', 422, '表单填写不完整');
@@ -135,7 +137,8 @@ exports.update = function(req, res, next) {
 
 		book.title 	    = title;
 		book.private    = private;
-		book.update_at = new Date();
+		book.update_at  = new Date();
+		book.desc       = desc;
 	
 		book.save(function(err) {
 			if ( err )

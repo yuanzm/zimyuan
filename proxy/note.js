@@ -51,3 +51,7 @@ exports.delAllNoteInOneBook = function(bookId, callback) {
 exports.getLastNotes = function(count, callback) {
 	Note.find({deleted: false}).limit(count).sort({create_at: -1}).exec(callback);
 }
+
+exports.countAllNotes = function(callback) {
+	Note.count({deleted: false}, callback);
+}

@@ -21,6 +21,7 @@ var ArticleSchema = new Schema({
 
 	reply_count : {type: Number, default: 0},		// 回复数量
 	visit_count : {type: Number, default: 0},		// 阅读数量
+	love_count  : {type: Number, default: 0},		// 点赞数量
 
 	create_at   : {type: Date, default: Date.now},	// 创建时间
 	update_at   : {type: Date, default: Date.now},	// 更新时间

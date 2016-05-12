@@ -1,0 +1,62 @@
+@import "../../common/index.less";
+
+.note-home {
+	padding: 1em 2em;
+}
+
+.note_block {
+	background-color: #fff;
+	.border-radius(7px);
+	margin-top: .75em;
+	padding: 10px;
+	padding-bottom: 0;
+}
+
+.note_block-line {
+	border-bottom: solid #e6e6e6 1px;
+	padding: 3px 0;
+	overflow: hidden;
+	.icon {
+		vertical-align: middle;
+	}
+}
+
+.note_block-line:last-child {
+	border-bottom: none;
+}
+
+.note_block-header {
+	color: #119d4f;
+	font-size: 1.25em;
+	padding-top: 0;
+	position: relative;
+	overflow: hidden;
+
+	.icon {
+		margin-right: 5px;
+		position: relative;
+		top: -1px;
+	}
+
+	.note_block-header-arrow {
+		position: absolute;
+		right: 0px;
+		top: 0;
+		font-size: .8em;
+
+		.icons8-Arrow {
+			width: 20px;
+			height: 20px;
+			margin-right: 0;
+		}
+	}
+}
+
+.note_block-line-title {
+	margin: 0;
+	color: #333;
+}
+
+.note_block-time {
+	color: #969696;
+}

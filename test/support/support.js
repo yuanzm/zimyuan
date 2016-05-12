@@ -29,8 +29,9 @@ var createUser = exports.createUser = function(callback) {
 var createNotebook = exports.createNotebook =  function(user, callback) {
 	var title   = 'test' + Math.random(100);
 	var private = false;
+	var desc    = '日常点滴';
 
-	Notebook.newAndSave(title, user._id, private, callback);
+	Notebook.newAndSave(title, user._id, private, desc, callback);
 }
 
 var createNote = exports.createNote = function(user, notebook, callback) {

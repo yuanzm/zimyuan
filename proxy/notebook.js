@@ -10,12 +10,13 @@ var EventProxy  = require('eventproxy'),
  * @param {Boolean} private: 是否
  * @param {Function} callback: 查询回调函数
  */
-exports.newAndSave = function(title, author, private, callback) {
+exports.newAndSave = function(title, author, private, desc, callback) {
 	var notebook 		 = new Notebook();
 
 	notebook.title 	 	= title;
 	notebook.author     = author;
 	notebook.private    = private;
+	notebook.desc 		= desc;
 
 	notebook.save(callback);
 };
@@ -51,3 +52,10 @@ exports.getBookById = function(id, callback) {
 	Notebook.findOne({_id: id}, callback);
 };
 
+exports.getLastNotebooks = function(count, callback) {
+	Notebook.find({deleted: false}).limit(count).sort({create_at: -1}).exec(callback);
+}
+
+exports.countAllBook = function(callback) {
+	Notebook.count({deleted: false}, callback);
+}

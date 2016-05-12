@@ -7,6 +7,7 @@ var app     = require('../app'),
 describe('notebook/test', function() {
     var title   = 'test' + Math.random(100);
     var private = false;
+    var desc    = '生活点滴'; 
 
     before(function(done) {
         done = pedding(done, 1);
@@ -20,6 +21,7 @@ describe('notebook/test', function() {
             .send({
                 title   : '',
                 private : private,
+                desc    : desc
             })
             .expect(200, function(err, res) {
                 should.not.exist(err);
@@ -34,6 +36,7 @@ describe('notebook/test', function() {
             .send({
                 title   : title,
                 private : private,
+                desc    : desc
             })
             .expect(200, function(err, res) {
                 should.not.exist(err);
@@ -48,6 +51,7 @@ describe('notebook/test', function() {
             .send({
                 title   : title,
                 private : private,
+                desc    : desc
             })
             .expect(200, function(err, res) {
                 should.not.exist(err);
@@ -64,7 +68,8 @@ describe('notebook/test', function() {
             .send({
                 title   : '',
                 private : private,
-                nid     : support.notebook._id
+                nid     : support.notebook._id,
+                desc    : desc
             })
             .expect(200, function(err, res) {
                 should.not.exist(err);
@@ -79,7 +84,8 @@ describe('notebook/test', function() {
             .send({
                 title   : title,
                 private : private,
-                nid     : support.normalUser2._id
+                nid     : support.normalUser2._id,
+                desc    : desc
             })
             .expect(200, function(err, res) {
                 should.not.exist(err);
@@ -94,7 +100,8 @@ describe('notebook/test', function() {
             .send({
                 title   : title,
                 private : private,
-                nid     : support.notebook._id
+                nid     : support.notebook._id,
+                desc    : desc
             })
             .expect(200, function(err, res) {
                 should.not.exist(err);

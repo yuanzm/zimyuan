@@ -9,8 +9,24 @@ var validator 	   = require('validator'),
 /**
  * @desc: 显示一篇note
  */
-exports.showNote = function(req, res) {
-	res.render('note/index');
+exports.noteIndex = function(req, res, next) {
+	var  ep = new EventProxy();
+	ep.fail(next);
+
+	ep.all('notes', 'notebooks', 'note_count', 'book_count', function(notes, notebooks, note_count, book_count) {
+		res.render('notes/notes', {
+			notes     : notes,
+			notebooks : notebooks,
+			title     : "我的笔记",
+			note_count: note_count,
+			book_count: book_count
+		});
+	});
+
+	Note.countAllNotes(ep.done('note_count'));
+	Note.getLastNotes(5, ep.done('notes'));
+	Notebook.getLastNotebooks(3, ep.done('notebooks'))
+	Notebook.countAllBook(ep.done('book_count'));
 };
 
 /**

@@ -25,6 +25,9 @@ exports.blog = function(req, res, next) {
 	var id = req.params.id;
 
 	Article.getArticleById(id, ep.done(function(article, author) {
+		article.visit_count += 1;
+		article.save();
+
 		res.render('blog/blog', {
 			marked  : marked,
 			article : article,
