@@ -50,6 +50,8 @@ router.post('/article/create', article.addArticle);		// 创建文章
 router.post('/article/update', article.updateArticle);	// 更新文章
 router.post('/article/delete', article.deleteArticle);	// 删除文章
 
+router.get('/article/edit/:id?', article.showBlogEdit);				// 博客首页
+
 // 管理端
 router.get('/admin/login', admin.showLogin);			// 管理端登录页面
 

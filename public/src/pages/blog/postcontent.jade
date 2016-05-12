@@ -9,4 +9,4 @@ div(class="blog-post")
 				a(href="/profile", class="blog-post__header-meta-author-link")=author.nick_name
 			li(class="blog-post__header-meta-item blog-post__header-meta-time")=article.create_at_ago() + '发布'
 
-	div!= marked(article.content)
+	div(class="blog-post__content")!= marked(article.content)

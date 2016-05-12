@@ -1,0 +1,76 @@
+@import "../../common/index.less";
+@import "../../components/index.less";
+
+.article-publish-page {
+	#nav {
+		position: absolute;
+	}
+}
+
+.article-publish {
+	padding: 2em;
+	padding-top: 1em;
+}
+
+.article-publish__form-group {
+	position: relative;
+	font-size: 16px;
+	margin-top: .75em;
+	width: 100%;
+ 	border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.article-publish__form-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.article-publish__form-input {
+	height: 30px;
+	margin: 0;
+	width: 100%;
+	text-indent: 6px;
+    background-color: #fff;
+    background-image: none;
+    outline: none;
+    border: none;
+    padding: 0;
+    border-radius: 3px;
+}
+
+.article-publish__form-textarea {
+	padding: 0;
+	min-height: 20em;
+	padding-top: 10px;
+}
+
+@media only screen and (min-width: 68.5em) {
+	.article-publish__form-textarea {
+		min-height: 35em;
+	}
+}
+
+.article-publish__form-footer {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 3;
+    background-color: #f3f3f3;
+    box-shadow: 0 -1px 2px 0 rgba(0,0,0,.24);
+    overflow: hidden;
+}
+
+.article-publish__form-btn-set {
+	float: right;
+	// margin-right: 30px;
+	padding: 10px 30px;
+}
+

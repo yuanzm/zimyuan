@@ -1,0 +1,15 @@
+div(class="article-publish")
+	div(class="article-publish__form-group")
+		label(for="_j_title",class="article-publish__form-label") 标题
+		input(id="_j_title", class="article-publish__form-input", placeholder="标题：那是我逝去的青春")
+	div(class="article-publish__form-group")
+		label(for="_j_tab",class="article-publish__form-label") 标签
+		input(id="_j_tab", class="article-publish__form-input", placeholder="标签，如：JavaScript，多个标签用,分割")
+	div(class="article-publish__form-group")
+		label(for="_j_content",class="article-publish__form-label") 内容
+		textarea(id="_j_content", class="article-publish__form-input article-publish__form-textarea", placeholder="请输入文章内容")
+
+	div(class="article-publish__form-footer")
+		div(class="article-publish__form-btn-set")
+			button(id="_j_preview",class="article-publish__form-btn btn btn-default mr10") 预览
+			button(id="_j_publish",class="article-publish__form-btn btn btn-primary") 发布文章

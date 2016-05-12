@@ -55,8 +55,6 @@ exports.getArticleById = function(id, callback) {
 		ep.emit('article', article);
 
 		User.getUserById(article.author, ep.done(function(author) {
-			console.log(author)
-
 			if ( !author ) {
 				ep.unbind();
 				return callback(null, '该用户不存在或者已经被销毁');

@@ -18,7 +18,6 @@ exports.blogIndex = function(req, res, next) {
 	}));
 }
 
-
 exports.blog = function(req, res, next) {
 	var ep = new EventProxy();
 	ep.fail(next);
@@ -32,6 +31,16 @@ exports.blog = function(req, res, next) {
 			author  : author,
 		});
 	}));
+}
+
+exports.showBlogEdit = function(req, res, next) {
+	var ep = new EventProxy();
+	ep.fail(next);	
+
+	var id = req.params.id;
+
+	if ( !id )
+		res.render("post/post");
 }
 
 /**
@@ -50,6 +59,7 @@ exports.addArticle = function(req, res, next) {
 	});
 
 	var author  = req.session.user._id;
+	console.log(author);
 
 	var type    = req.body.type;
 	var title   = req.body.title;
