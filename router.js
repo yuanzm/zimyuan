@@ -42,7 +42,8 @@ router.post('/note/create', note.addNote);		// 创建笔记本
 router.post('/note/update', note.update);		// 创建笔记本
 router.post('/note/delete', note.deleteNote);	// 创建笔记本
 
-router.get('/note/:id', note.getOneNote);	// 获取一篇笔记
+router.get('/note/:id', note.getOneNote);		// 获取一篇笔记
+router.get('/notes/:id?', note.noteIndex);		// 笔记首页
 
 // 文章
 router.get('/blogs', article.blogIndex);				// 博客首页
@@ -54,8 +55,6 @@ router.post('/article/delete', article.deleteArticle);	// 删除文章
 
 router.get('/article/edit/:id?', article.showBlogEdit);	// 博客首页
 
-// 笔记
-router.get('/notes', note.noteIndex);					// 笔记首页
 
 // 管理端
 router.get('/admin/login', admin.showLogin);			// 管理端登录页面

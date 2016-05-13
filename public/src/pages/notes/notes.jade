@@ -1,12 +1,18 @@
 extends ../layout.jade
 
 block css
-	link(rel="stylesheet", href="../dist/css/notes.css?v=5")
+	link(rel="stylesheet", href="../dist/css/notes.css?v=10")
 
 block pagemain
 	div(class="note_container")
-		div(class="note-home")
-			div(class="note_block")
+		if cacheNotes
+			input(id="_j_cache_notes", type="hidden", data-cache="" + cacheNotes)
+			input(id="_j_cache_notebooks", type="hidden", data-cache="" + cacheBooks)
+
+		input(id="_j_page_from", type="hidden", data-from="" + from)
+
+		div(class="note-home note-index")
+			div(class="note_panel note_block note_block_hide")
 				div(class="note_block-line note_block-header")
 					span(class="icon icons8-Note_green")
 					|笔记
@@ -18,7 +24,7 @@ block pagemain
 						p(class="note_block-line-title")=note.title
 						span(class="note_block-time ")=note.create_at_ago()
 
-			div(class="note_block")
+			div(class="book_panel note_block note_block_hide")
 				div(class="note_block-line note_block-header")
 					span(class="icon icons8-Book")
 					|笔记本
@@ -31,16 +37,19 @@ block pagemain
 						span(class="note_block-time")=book.note_count + ' 条笔记-' + book.desc
 
 		div(class="note-home one-note")
-			div(class="note_block")
+			div(class="note_block note_block_hide")
 				div(class="note_block-line note_block-header")
-					span(id="_j_note_title")
+					div(id="_j_note_back_btn" class="note_block-header-back", data-from=""+from)
+						span(class="icon arrow icons8-Arrow_back")
+						| 返回
 					div(class="note_block-header-arrow")
 						span(class="icon icons8-Book")
-						span(id="_j_notebook_name")
-						span(class="icon icons8-Arrow") 
+						span(id="_j_notebook_name")=note.notebook_name
+						span(class="icon arrow icons8-Arrow") 
 				div(class="one-note__detail")
-					p(id="_j_note_content")	  
+					h2(id="_j_note_title", class="note_block-header-title")=note.title
+					p(id="_j_note_content")=note.content
 
 block scripts
 	script(src="/lib/zepto/zepto.min.js")
-	script(src="/dist/js/pages/notes.js?v=3")
+	script(src="/dist/js/pages/notes.js?v=8")

@@ -1,9 +1,8 @@
 @import "../../common/index.less";
 
 .note_container {
-	// height: 485px;
-	padding: 1em 2em;
-	// overflow: hidden;
+	font-size: 16px;
+	padding:  0 1em 1em 1em;
 	position: relative;
 }
 
@@ -13,37 +12,31 @@
 	clear:both;
 }
 
-.note_container_showonenote {
-	.note-home {
-		opacity: 0;
-	}
-
-	.one-note {
-		opacity: 1;
-	}
-}
-
-.note_container_shownotebooks {
-
-}
-
 .note-home, .one-note {
 	position: absolute;
-	left: 2em;
-	right: 2em;
+	left: 1.5em;
+	right: 1.5em;
 }
 
 .note-home {
 	// width: 100%;
 	opacity: 1;
 
-	transition: opacity .3s linear 0s;
-	/* Firefox 4 */
-	-moz-transition:opacity .3s linear 0s;
-	/* Safari and Chrome */
-	-webkit-transition:opacity .3s linear 0s;
-	/* Opera */
-	-o-transition:opacity .3s linear 0s;
+	transition: opacity .2s linear 0s;
+	-moz-transition:opacity .2s linear 0s;
+	-webkit-transition:opacity .2s linear 0s;
+	-o-transition:opacity .2s linear 0s;
+
+	.note_panel {
+		min-height: 260px;
+	}
+
+	.note_panel_hide {
+		transition: height .2s linear 0s;
+		-moz-transition:height .2s linear 0s;
+		-webkit-transition:height .2s linear 0s;
+		-o-transition:height .2s linear 0s;
+	}
 }
 
 .note_block {
@@ -80,17 +73,23 @@
 		top: -1px;
 	}
 
+	.note_block-header-back {
+		font-size: .8em;
+	}
+
 	.note_block-header-arrow {
 		position: absolute;
 		right: 0px;
 		top: 0;
 		font-size: .8em;
-
-		.icons8-Arrow {
-			width: 20px;
-			height: 20px;
-			margin-right: 0;
-		}
+	}
+	.arrow {
+		width: 20px;
+		height: 20px;
+		margin-right: 0;
+	}
+	.note_block-header-title {
+		text-align: center;
 	}
 }
 
@@ -105,15 +104,14 @@
 
 .one-note {
 	z-index: -1;
-	opacity: 0;
+	.note_block {
+		opacity: 0;
 
-	transition: opacity .1s linear .5s;
-	/* Firefox 4 */
-	-moz-transition:opacity .1s linear .5s;
-	/* Safari and Chrome */
-	-webkit-transition:opacity .1s linear .5s;
-	/* Opera */
-	-o-transition:opacity .1s linear .5s;
+		transition: all .2s linear .2s;
+		-moz-transition:all .2s linear .2s;
+		-webkit-transition:all .2s linear .2s;
+		-o-transition:all .2s linear .2s;
+	}
 }
 
 .one-note__detail {
@@ -122,6 +120,93 @@
 	padding: 10px 0;
 }
 
+.note_block-header-title {
+	font-size: 1.25em;
+	color: #4ec07d;
+	margin-bottom: .5em;
+	// border-bottom: solid 1px #e5e5e5;
+}
+
 #nav {
 	position: absolute;
+}
+
+// 页面动画效果
+
+// 隐藏笔记和笔记本板块，显示单条笔记
+.note_container_showonenote {
+	.note-index {
+		opacity: 0;
+		z-index: -1;
+	}
+
+	.one-note {
+		opacity: 1;
+		z-index: 1;
+	}
+	.one-note .note_block {
+		opacity: 1;
+	}
+}
+
+.note_container_shownotebooks {
+	.note_panel {
+		padding: 0;
+		overflow: hidden;
+		min-height: 0;
+		height: 0 !important;
+	}
+}
+
+.note-home {
+	-webkit-perspective: 300px;
+	   -moz-perspective: 300px;
+	    -ms-perspective: 300px;
+	     -o-perspective: 300px;
+	        perspective: 300px;
+
+	-webkit-perspective-origin: 50% 50%;
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	     -o-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+
+	.note_block {
+		-webkit-transition: all 600ms ease;
+		   -moz-transition: all 600ms ease;
+		    -ms-transition: all 600ms ease;
+		     -o-transition: all 600ms ease;
+		        transition: all 600ms ease;
+
+		-webkit-transform-origin: 100% 50%;
+		   -moz-transform-origin: 100% 50%;
+		    -ms-transform-origin: 100% 50%;
+		     -o-transform-origin: 100% 50%;
+		        transform-origin: 100% 50%;
+
+		-webkit-transform: translateZ(0px);
+	    -moz-transform: translateZ(0px);
+	    -ms-transform: translateZ(0px);
+	    -o-transform: translateZ(0px);
+	    transform: translateZ(0px);
+
+	    opacity: 1;
+	}
+
+	.note_block_hide {
+		opacity: 0;
+		-webkit-transform: translate3d( 0, 100px, -100px ) rotateX( 90deg );
+		    -moz-transform: translate3d( 0, 100px, -100px ) rotateX( 90deg );
+			  -ms-transform: translate3d( 0, 100px, -100px ) rotateX( 90deg );
+			   -o-transform: translate3d( 0, 100px, -100px ) rotateX( 90deg );
+			   transform: translate3d( 0, 100px, -100px ) rotateX( 90deg );
+	}
+
+	.note_block_display {
+		-webkit-transform: translate3d( 0, -100px, -100px ) rotateX( -90deg );
+			   -moz-transform: translate3d( 0, -100px, -100px ) rotateX( -90deg );
+			    -ms-transform: translate3d( 0, -100px, -100px ) rotateX( -90deg );
+			     -o-transform: translate3d( 0, -100px, -100px ) rotateX( -90deg );
+			        transform: translate3d( 0, -100px, -100px ) rotateX( -90deg );
+	}
 }

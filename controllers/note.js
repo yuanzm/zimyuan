@@ -6,6 +6,17 @@ var validator 	   = require('validator'),
 	tools          = require('../common/tools');
 	authMiddleWare = require('../middlewares/auth');
 
+function genCacheData(data) {
+	var obj = {};
+
+	for ( var i = 0;i < data.length;i++ ) {
+		var key = data[i]._id;
+		obj[key] = data[i]
+	}
+
+	return JSON.stringify(obj);
+}
+
 /**
  * @desc: 显示一篇note
  */
@@ -13,20 +24,49 @@ exports.noteIndex = function(req, res, next) {
 	var  ep = new EventProxy();
 	ep.fail(next);
 
-	ep.all('notes', 'notebooks', 'note_count', 'book_count', function(notes, notebooks, note_count, book_count) {
-		res.render('notes/notes', {
-			notes     : notes,
-			notebooks : notebooks,
-			title     : "我的笔记",
-			note_count: note_count,
-			book_count: book_count
-		});
-	});
+	var from = (  req.query.from
+				? req.query.from
+				: ""  );
+	var id   = req.params.id;
 
-	Note.countAllNotes(ep.done('note_count'));
-	Note.getLastNotes(5, ep.done('notes'));
-	Notebook.getLastNotebooks(3, ep.done('notebooks'))
-	Notebook.countAllBook(ep.done('book_count'));
+	if ( id ) {
+		Note.getNoteById(id, ep.done(function(note) {
+			res.render("notes/notes", {
+				title : '我的笔记',
+				from  : from,
+				note  : note,
+
+				notes     : [],
+				notebooks : [],
+				note_count: 0,
+				book_count: 0,
+				cacheNotes: '',
+				cacheBooks: ''
+			});
+		}));
+	}
+
+	else {
+		ep.all('notes', 'notebooks', 'note_count', 'book_count', function(notes, notebooks, note_count, book_count) {
+			res.render('notes/notes', {
+				from      : from,
+				notes     : notes,
+				notebooks : notebooks,
+				title     : "我的笔记",
+				note_count: note_count,
+				book_count: book_count,
+				cacheNotes: genCacheData(notes),
+				cacheBooks: genCacheData(notebooks),
+
+				note     : {}
+			});
+		});
+
+		Note.countAllNotes(ep.done('note_count'));
+		Note.getLastNotes(5, ep.done('notes'));
+		Notebook.getLastNotebooks(3, ep.done('notebooks'))
+		Notebook.countAllBook(ep.done('book_count'));
+	}
 };
 
 exports.getOneNote = function(req, res, next) {
@@ -40,7 +80,7 @@ exports.getOneNote = function(req, res, next) {
 		res.json(rdata);
 	});
 
-	var id = req.params.id;
+	var id   = req.params.id;
 
 	if ( !id )
 		return ep.emit('get_note_error', 422, '缺少参数id');

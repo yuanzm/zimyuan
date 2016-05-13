@@ -38,6 +38,18 @@ block pagemain
 							h3(class="recommend__list-item-title")=one.title
 							p(class="recommend__list-item-mata")=one.create_at_ago()
 
+	if note.length
+		section(class="recommend")
+			h2(class="recommend__title")
+				span(class="icon icons8-Note")
+				|&nbsp最新笔记
+			ul(class="recommend__list")
+				each one in note
+					li(class="recommend__list-item")
+						a(class="recommend__list-item-link", href="/notes/" + one._id + '?from=home' )
+							h3(class="recommend__list-item-title")=one.title
+							p(class="recommend__list-item-mata")=one.notebook_name + '. ' + one.update_at_ago()
+								
 	if photo.length
 		section(class="recommend")
 			h2(class="recommend__title")
@@ -51,16 +63,6 @@ block pagemain
 						h3(class="recommend__list-item-title")=one.title
 						p(class="recommend__list-item-mata")=one.create_at_ago()
 
-	if note.length
-		section(class="recommend")
-			h2(class="recommend__title")
-				span(class="icon icons8-Note")
-				|&nbsp最新笔记
-			ul(class="recommend__list")
-				each one in note
-					li(class="recommend__list-item")
-						h3(class="recommend__list-item-title")=one.title
-						p(class="recommend__list-item-mata")=one.notebook_name + '. ' + one.update_at_ago()
 
 	div(class="zimyuan__hr")
 

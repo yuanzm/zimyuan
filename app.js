@@ -25,7 +25,7 @@ initAdmin();
 // view engine setup
 app.set('views', path.join(__dirname, 'public/src/pages'));
 app.set('view engine', 'jade');
-if ( !config.debug )
+// if ( !config.debug )
     app.set('view cache', true);
 
 // uncomment after placing your favicon in /public
