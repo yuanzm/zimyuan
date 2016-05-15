@@ -46,6 +46,17 @@ exports.showBlogEdit = function(req, res, next) {
 		res.render("post/post");
 }
 
+exports.photoIndex = function(req, res, next) {
+	var ep = new EventProxy();
+	ep.fail(next);
+
+	Article.getLastArticles('photo', 10, ep.done(function(photo) {
+		res.render("photos/photos", {
+			photo: photo
+		});
+	}));	
+}
+
 /**
  * @desc: 创建一篇文章
  */

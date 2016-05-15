@@ -20,7 +20,12 @@ var config = {
     // redis 配置，默认是本地
     redis_host: '127.0.0.1',
     redis_port: 6379,
-    redis_db: 0    
+    redis_db: 0,
+
+    // 七牛配置
+    ACCESS_KEY: "Jk99uXKdjX-kFNoftO0_9bdCWLwKrHfZ0o02kYrP",
+    SECRET_KEY: "Z4k2RF702YAiEqQPw1K9Q4Wr2VdCI-ONzwAZEgdS",
+    bucket    : "zimyuan"
 }
 
 if (process.env.NODE_ENV === 'test') {

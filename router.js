@@ -16,7 +16,7 @@ var express  = require("express"),
 	article  = require('./controllers/article'),	
 	config 	 = require('./config'),
 	admin    = require('./controllers/admin'),
-	// upload 	= require('./controllers/upload'),
+	upload 	= require('./controllers/upload'),
 	router   = express.Router();
 
 // home page
@@ -55,13 +55,14 @@ router.post('/article/delete', article.deleteArticle);	// 删除文章
 
 router.get('/article/edit/:id?', article.showBlogEdit);	// 博客首页
 
+// 照片
+router.get('/photos', article.photoIndex);				// 相册首页
 
 // 管理端
 router.get('/admin/login', admin.showLogin);			// 管理端登录页面
 
 // 上传文件
-// router.get('/uptoken', auth.userRequired, upload.uptoken);
-// router.post('/downtoken', auth.userRequired, upload.downtoken);
+router.post('/uptoken', auth.userRequired, upload.uptoken);
 
 router.get('/test', sign.test);	// 登录请求
 

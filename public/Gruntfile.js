@@ -76,6 +76,7 @@
 						'dist/css/login.css': 'src/pages/admin/login/login.less',
 						'dist/css/post.css': 'src/pages/post/post.less',
 						'dist/css/notes.css': 'src/pages/notes/notes.less',
+						'dist/css/photos.css': 'src/pages/photos/photos.less',
 				  	}
 				}
 		  	},

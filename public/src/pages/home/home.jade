@@ -36,7 +36,7 @@ block pagemain
 					li(class="recommend__list-item")
 						a(class="recommend__list-item-link", href="/blog/" + one._id )
 							h3(class="recommend__list-item-title")=one.title
-							p(class="recommend__list-item-mata")=one.create_at_ago()
+							p(class="recommend__list-item-mata")=one.create_at_ago() + ' 阅读(' + one.visit_count + ')'
 
 	if note.length
 		section(class="recommend")

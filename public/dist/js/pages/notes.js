@@ -1501,6 +1501,7 @@ Notes.prototype = {
 
 		$('.one-note .note_block').addClass(NOTEBLOCKHIDECLS);
 		this.$noteContainer.removeClass(SHOWONENOTECLS);
+		this.$noteContainer.height(HOMEHEIGHT);
 	},
 
 	showAllNotebooks: function(header) {

@@ -1,7 +1,7 @@
 extends ../layout.jade
 
 block css
-	link(rel="stylesheet", href="../dist/css/notes.css?v=10")
+	link(rel="stylesheet", href="../dist/css/notes.css?v=99")
 
 block pagemain
 	div(class="note_container")
@@ -18,7 +18,7 @@ block pagemain
 					|笔记
 
 					div(class="note_block-header-arrow")='全部 ' + note_count
-						span(class="icon icons8-Arrow") 
+						span(class="icon arrow icons8-Arrow") 
 				each note in notes
 					div(class="note_block-line note_block-note" data-id=""+note._id)
 						p(class="note_block-line-title")=note.title
@@ -26,10 +26,19 @@ block pagemain
 
 			div(class="book_panel note_block note_block_hide")
 				div(class="note_block-line note_block-header")
-					span(class="icon icons8-Book")
-					|笔记本
+					div(class="note_block-header-back", data-from=""+from)
+						span(class="icon arrow icons8-Arrow_back")
+						| 返回
+
+					div(class="note_block-header-center")
+						span(class="icon icons8-Book")
+						span(class="note_block-header-title1") 笔记本
+					
+					div(class="note_block-header-center2")
+						span(class="note_block-header-title1") 全部
+
 					div(class="note_block-header-arrow")='全部 ' + note_count
-						span(class="icon icons8-Arrow")
+						span(class="icon icons8-Arrow arrow")
 
 				each book in notebooks
 					div(class="note_block-line note_block-book")
@@ -52,4 +61,4 @@ block pagemain
 
 block scripts
 	script(src="/lib/zepto/zepto.min.js")
-	script(src="/dist/js/pages/notes.js?v=8")
+	script(src="/dist/js/pages/notes.js?v=0")
