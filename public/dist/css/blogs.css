@@ -255,6 +255,7 @@ h2 {
 .recommend__title {
   font-size: 1.25em;
   margin-top: 1em;
+  padding-bottom: .3em;
 }
 .recommend__list {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -469,6 +470,10 @@ body {
 .header__nav-trigger .icon {
   position: relative;
   top: 0.2em;
+}
+.footer p {
+  height: 100%;
+  text-align: 100%;
 }
 .footer a {
   color: #444;

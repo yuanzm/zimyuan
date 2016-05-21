@@ -13,6 +13,7 @@ var express  = require("express"),
 	site 	 = require("./controllers/site"),
 	sign 	 = require("./controllers/sign"),
 	profile  = require("./controllers/profile"),
+	photo    = require('./controllers/photo'),	
 	article  = require('./controllers/article'),	
 	config 	 = require('./config'),
 	admin    = require('./controllers/admin'),
@@ -57,6 +58,7 @@ router.get('/article/edit/:id?', article.showBlogEdit);	// 博客首页
 
 // 照片
 router.get('/photos', article.photoIndex);				// 相册首页
+router.get('/photo/:id?', photo.onePhoto);			// 一个相册
 
 // 管理端
 router.get('/admin/login', admin.showLogin);			// 管理端登录页面
