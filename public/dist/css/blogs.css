@@ -473,7 +473,7 @@ body {
 }
 .footer p {
   height: 100%;
-  text-align: 100%;
+  line-height: 3em;
 }
 .footer a {
   color: #444;

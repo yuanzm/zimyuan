@@ -58,11 +58,10 @@ block pagemain
 			ul(class="recommend__list")
 				each one in photo
 					li(class="recommend__list-item")
-						div(class="recommend__list-item-photo")
-							img(src="http://jimramsden.com/content/02-photos/11-coast/thumb.jpg")
-						h3(class="recommend__list-item-title")=one.title
-						p(class="recommend__list-item-mata")=one.create_at_ago()
-
+						a(class="recommend__list-item-link", href="/photo/" + one._id )
+							div(class="recommend__list-item-photo")
+								img(src="http://jimramsden.com/content/02-photos/11-coast/thumb.jpg")
+							h3(class="recommend__list-item-title")=one.title
+							p(class="recommend__list-item-mata")=one.create_at_ago()
 
 	div(class="zimyuan__hr")
-
